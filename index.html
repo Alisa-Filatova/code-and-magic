@@ -4,15 +4,16 @@
       <meta charset="utf-8">
     
       <link href="https://fonts.googleapis.com/css?family=PT+Mono&amp;subset=latin,cyrillic" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&amp;subset=cyrillic" rel="stylesheet">
       <link rel="stylesheet" href="css/main.css">
       <title>Code and Magick</title>
   </head>
   <body>
 
       <header class="header">
-          <div class="header-clouds"></div>
-          <div class="header-fence"></div>
-          <div class="header-tree"></div>
+          <div class="clouds"></div>
+          <div class="fence"></div>
+          <div class="tree"></div>
 
           <span class="header-soon">Скоро</span>
           <h1 class="header-title">Code and Magick</h1>
@@ -23,29 +24,40 @@
               Вместе с ним вас ждет увлекательное приключение!
           </p>
 
-          <div class="demo"></div>
+          <div class="demo">
+              <div class="wizard float">
+                  <div class="fireball"></div>
+              </div>
+              <div class="demo__description">
+                  <p class="demo__description_text">
+                      Я перемещаюсь по нажатию на стрелки
+                      и стреляю фаерболом с помощью shift.
+                      Скорее жми на <b>пробел</b>, и игра начнется...
+                  </p>
+              </div>
+          </div>
       </header>
 
       <main>
           <section class="main-section photogallery">
               <h2 class="section-title photogallery-title">Фотогалерея</h2>
-              <a href="#" class="photogallery-image">
-                  <img src="img/screenshots/1.png" width="292">
+              <a href="#" class="photogallery-image" data-img="1">
+                  <img src="img/screenshots/1.png" data-img="1">
               </a>
-              <a href="#" class="photogallery-image">
-                  <img src="img/screenshots/2.png" width="292">
+              <a href="#" class="photogallery-image" data-img="2">
+                  <img src="img/screenshots/2.png" data-img="2">
               </a>
-              <a href="#" class="photogallery-image">
-                  <img src="img/screenshots/3.png" width="292">
+              <a href="#" class="photogallery-image" data-img="3">
+                  <img src="img/screenshots/3.png" data-img="3">
               </a>
-              <a href="#" class="photogallery-image">
-                  <img src="img/screenshots/4.png" height="271">
+              <a href="#" class="photogallery-image" data-img="4">
+                  <img src="img/screenshots/4.png " data-img="4">
               </a>
-              <a href="#" class="photogallery-image">
-                  <img src="img/screenshots/5.png" height="271">
+              <a href="#" class="photogallery-image" data-img="5">
+                  <img src="img/screenshots/5.png" data-img="5">
               </a>
-              <a href="#" class="photogallery-image" data-replacement-video="img/screenshots/cm-sample.mp4">
-                  <img src="img/screenshots/6.png" width="292">
+              <a href="#" class="photogallery-image" data-img="6">
+                  <img src="img/screenshots/6.png" data-img="6">
               </a>
           </section>
 
@@ -198,7 +210,7 @@
               <div class="overlay-gallery-preview">
                   <div class="overlay-gallery-preview-number">
                       <span class="preview-number-current">1</span> из
-                      <span class="preview-number-total">5</span>
+                      <span class="preview-number-total">6</span>
                   </div>
               </div>
               <div class="overlay-gallery-control overlay-gallery-control-right"></div>
@@ -217,6 +229,9 @@
               </div>
           </article>
       </template>
+
+      <script src="js/jquery-3.2.1.min.js"></script>
+      <script src="js/index.js"></script>
 
   </body>
 </html>
