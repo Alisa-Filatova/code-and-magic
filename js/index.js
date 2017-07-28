@@ -47,30 +47,29 @@ $window.keydown(function(event) {
     if (event.keyCode == right && descriptionIsInvisible) {
         event.preventDefault();
 
-        if (positionLeft >= 700 || positionLeft <= -150) {
-            return;
-        }
-
         $wizard
             .css('transform', 'translateX(' + positionLeft + 'px)')
             .removeClass('wizard-reversed');
 
         $fireball.removeClass('fireball-reversed');
-    }
-
-    if (event.keyCode == left && descriptionIsInvisible) {
-        event.preventDefault();
-
 
         if (positionLeft >= 700 || positionLeft <= -150) {
             return;
         }
+    }
+
+    if (event.keyCode == left && descriptionIsInvisible) {
+        event.preventDefault();
 
         $wizard
             .css('transform', 'translateX(' + -positionLeft + 'px)')
             .addClass('wizard-reversed');
 
         $fireball.addClass('fireball-reversed');
+
+        if (positionLeft >= 700 || positionLeft <= -150) {
+            return;
+        }
     }
 
     if (event.keyCode == top && descriptionIsInvisible) {
@@ -83,7 +82,7 @@ $window.keydown(function(event) {
         $wizard.css('transform', 'translateY(0)');
     }
 
-    // запуск фаербола
+    // Запуск фаербола
 
     if (event.keyCode == shift && descriptionIsInvisible && $wizard.hasClass('wizard-reversed')) {
         event.preventDefault();
@@ -201,6 +200,50 @@ $prev.on('click', function() {
     }
 });
 
+$window.keydown(function() {
+    var right = 39;
+    var left = 37;
+    var esc = 27;
+    var $checkOverlay = $overlay.not('invisible');
+
+    if (event.keyCode == right && $checkOverlay) {
+        currentStep++;
+        $currentBox.text(currentStep);
+        totalImages();
+        $imageSmall
+            .filter($('[data-img = ' + currentStep + ']'))
+            .clone().appendTo($imageBigBox)
+            .siblings('img')
+            .remove();
+        if (currentStep >= $totalBox.text()) {
+            currentStep = $totalBox.text();
+            $currentBox.text(currentStep);
+        }
+    }
+
+    if (event.keyCode == left && $checkOverlay) {
+        currentStep--;
+        $currentBox.text(currentStep);
+        totalImages();
+        $imageSmall
+            .filter($('[data-img = ' + currentStep + ']'))
+            .clone().appendTo($imageBigBox)
+            .siblings('img')
+            .remove();
+        if (currentStep <= 1) {
+            currentStep = 1;
+            $currentBox.text(currentStep);
+        }
+    }
+
+    // Закрытие галереи по нажатию esc
+
+    if (event.keyCode == esc && $checkOverlay) {
+        $imageBig.remove().siblings('img').remove();
+        $overlay.addClass('invisible');
+    }
+});
+
 // Закрытие галереи по нажатию крестика
 
 $closeGallery.on('click', function(event) {
@@ -237,15 +280,22 @@ $closeForm.on('click', function(event) {
     $reviewForm.addClass('invisible');
 });
 
+$window.keydown(function() {
+    var esc = 27;
+    if (event.keyCode == esc && $reviewForm.not('invisible')) {
+        $reviewForm.addClass('invisible');
+    }
+});
+
 /**
  * Filter reviews
  */
 
-var $filterAll = $('[for=reviews-all]');
-var $filterGood = $('[for=reviews-good]');
-var $filterBad = $('[for=reviews-bad]');
-var $filterRecent = $('[for=reviews-recent]');
-var $filterPopular = $('[for=reviews-popular]');
+var $filterAll = $('label [for=reviews-all]');
+var $filterGood = $('label [for=reviews-good]');
+var $filterBad = $('label [for=reviews-bad]');
+var $filterRecent = $('label [for=reviews-recent]');
+var $filterPopular = $('label [for=reviews-popular]');
 
 var $ratingBad = $('.review-rating[data-star=1], .review-rating[data-star=2], .review-rating[data-star=3]');
 var $ratingGood = $('.review-rating[data-star=4], .review-rating[data-star=5]');

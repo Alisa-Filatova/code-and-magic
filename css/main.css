@@ -37,11 +37,12 @@ h2 {
   background: transparent;
   margin-top: 40px;
   cursor: pointer;
-  color: #000;
-  border: solid 1px;
+  color: #fff;
+  border: 1px solid #fff;
   font-size: 18px;
   line-height: 36px;
   padding: 0 18px;
+  font-weight: bold;
 }
 
 
@@ -83,6 +84,10 @@ h2 {
   margin-left: 300px;
   position: absolute;
   width: 120px;
+}
+
+.main-section {
+  background-color: rgba(0, 0, 0, 0.42);
 }
 
 .header-soon {
@@ -181,7 +186,7 @@ h2 {
 }
 
 main {
-  background: linear-gradient(180deg, #350b01, #ffab19);
+  background: url('../img/dirt.png') repeat;
   padding-top: 80px;
 }
 
@@ -225,7 +230,8 @@ main {
 
 .reviews {
   box-sizing: border-box;
-  width: 670px;
+  width: 1000px;
+  padding: 50px;
 }
 
 .reviews-title {
@@ -235,6 +241,11 @@ main {
 .reviews-filter {
   margin-bottom: 60px;
   white-space: nowrap;
+  text-align: center;
+}
+
+.review-text {
+  width: 600px;
 }
 
 .reviews-filter-item {
