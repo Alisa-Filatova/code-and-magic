@@ -40,7 +40,8 @@
 
       <main>
           <section class="main-section photogallery">
-              <h2 class="section-title photogallery-title">Фотогалерея</h2>
+              <h2 class="section-title photogallery-title">Скриншоты</h2>
+
               <a href="#" class="photogallery-image" data-img="1">
                   <img src="img/screenshots/1.png" data-img="1">
               </a>
@@ -59,6 +60,17 @@
               <a href="#" class="photogallery-image" data-img="6">
                   <img src="img/screenshots/6.png" data-img="6">
               </a>
+              <a href="#" class="photogallery-image invisible" data-img="7">
+                  <img src="img/screenshots/7.png " data-img="7">
+              </a>
+              <a href="#" class="photogallery-image invisible" data-img="8">
+                  <img src="img/screenshots/8.png" data-img="8">
+              </a>
+              <a href="#" class="photogallery-image invisible" data-img="9">
+                  <img src="img/screenshots/9.png" data-img="9">
+              </a>
+
+              <button class="btn reviews-controls-new" type="button">+ Больше скриншотов</button>
           </section>
 
           <section class="main-section reviews">
@@ -102,10 +114,84 @@
                   <label for="reviews-popular" class="reviews-filter-item">Популярные</label>
               </form>
 
-              <div class="reviews-list"></div>
+              <div class="reviews-list">
+                  <article class="review">
+                      <img src="img/user-1.jpg" class="review-author" alt="Димон Медведкин">
+                      <span class="review-rating" data-star="1"></span>
+                      <p class="review-text">
+                          Плохая игра: слишком сильно затягивает
+                          и невозможно оторваться. Я потерял работу, учебу, девушку
+                          и дар речи, но продолжаю играть. Это призыв о помощи: спасите.
+                      </p>
+                      <div class="review-quiz">
+                          Полезный отзыв?
+                          <span class="review-quiz-answer review-quiz-answer-yes">Да</span>
+                          <span class="review-quiz-answer review-quiz-answer-no">Нет</span>
+                      </div>
+                  </article>
+                  <article class="review">
+                      <img src="img/user-2.png" class="review-author" alt="Мила Йовович">
+                      <span class="review-rating" data-star="5"></span>
+                      <p class="review-text">
+                          Невероятно чумовая игра. Пендальф-синий — мой герой))))
+                          Он такой милашка. Благодаря ему я наконец научилась отвлекаться от работы и учёбы.</p>
+                      <div class="review-quiz">
+                          Полезный отзыв?
+                          <span class="review-quiz-answer review-quiz-answer-yes">Да</span>
+                          <span class="review-quiz-answer review-quiz-answer-no">Нет</span>
+                      </div>
+                  </article>
+                  <article class="review">
+                      <img src="img/user-3.png" class="review-author" alt="Ван Гоги">
+                      <span class="review-rating" data-star="4"></span>
+                      <p class="review-text">
+                          Игра очень неплохая. Тут есть и трюки, и взлёты, и падения.
+                          Никогда не знаешь, что ждёт тебя впереди.
+                      </p>
+                      <div class="review-quiz">
+                          Полезный отзыв?
+                          <span class="review-quiz-answer review-quiz-answer-yes">Да</span>
+                          <span class="review-quiz-answer review-quiz-answer-no">Нет</span>
+                      </div>
+                  </article>
+                  <article class="review">
+                      <img src="img/user-4.jpg" class="review-author" alt="Ксения Собчак">
+                      <span class="review-rating" data-star="1"></span>
+                      <p class="review-text">Плохо, мне не нравится!</p>
+                      <div class="review-quiz">
+                          Полезный отзыв?
+                          <span class="review-quiz-answer review-quiz-answer-yes">Да</span>
+                          <span class="review-quiz-answer review-quiz-answer-no">Нет</span>
+                      </div>
+                  </article>
+                  <article class="review">
+                      <img src="img/user-5.jpg" class="review-author" alt="Стив Джобс">
+                      <span class="review-rating" data-star="3"></span>
+                      <p class="review-text">
+                          Игра очень интересная. Нравится возможность
+                          выбирать между героями, а самое крутое, что есть альтернативные концовки в игре.
+                          Она точно стоит своих денег.
+                      </p>
+                      <div class="review-quiz">
+                          Полезный отзыв?
+                          <span class="review-quiz-answer review-quiz-answer-yes">Да</span>
+                          <span class="review-quiz-answer review-quiz-answer-no">Нет</span>
+                      </div>
+                  </article>
+                  <article class="review">
+                      <img src="img/user-6.jpg" class="review-author" alt="Шварц" title="">
+                      <span class="review-rating" data-star="5"></span>
+                      <p class="review-text">Понравилось. Я вернусь!</p>
+                      <div class="review-quiz">
+                          Полезный отзыв?
+                          <span class="review-quiz-answer review-quiz-answer-yes">Да</span>
+                          <span class="review-quiz-answer review-quiz-answer-no">Нет</span>
+                      </div>
+                  </article>
+              </div>
 
               <div class="reviews-controls">
-                  <span class="reviews-controls-item reviews-controls-more invisible">Еще отзывы</span>
+                  <span class="reviews-controls-item reviews-controls-more">Еще отзывы</span>
                   <span class="reviews-controls-item reviews-controls-new">+ Добавить свой</span>
               </div>
           </section>
@@ -209,15 +295,15 @@
               <div class="overlay-gallery-control overlay-gallery-control-left"></div>
               <div class="overlay-gallery-preview">
                   <div class="overlay-gallery-preview-number">
-                      <span class="preview-number-current">1</span> из
-                      <span class="preview-number-total">6</span>
+                      <span class="preview-number-current"></span> из
+                      <span class="preview-number-total"></span>
                   </div>
               </div>
               <div class="overlay-gallery-control overlay-gallery-control-right"></div>
            </div>
       </div>
 
-      <template id="review-template">
+      <template id="review-template invisible">
           <article class="review">
               <img src="" class="review-author" alt="" title="">
               <span class="review-rating"></span>

@@ -32,6 +32,13 @@ h2 {
   text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.72);
 }
 
+.btn {
+  border: none;
+  background: transparent;
+  margin-top: 40px;
+  cursor: pointer;
+}
+
 
 .header {
   background: #2b5cfc;
@@ -169,7 +176,7 @@ h2 {
 }
 
 main {
-  background: linear-gradient(180deg, #ae340a, #fcb945);
+  background: linear-gradient(180deg, #350b01, #ffab19);
   padding-top: 80px;
 }
 
@@ -208,8 +215,7 @@ main {
 }
 
 .photogallery-image img {
-  width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .reviews {

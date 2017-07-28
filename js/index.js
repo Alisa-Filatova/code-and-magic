@@ -4,9 +4,13 @@
 
 var $window = $(window);
 
+//скролл облаков
+
 $window.scroll(function() {
     var scrolled = $window.scrollTop();
-    $('.clouds').css('background-position-x', -scrolled + 'px');
+    var $clouds = $('.clouds');
+
+    $clouds.css('background-position-x', -scrolled + 'px');
 });
 
 /**
@@ -111,53 +115,101 @@ $window.keyup(function(event) {
     }
 });
 
+/**
+ *ScreenShots Gallery
+ */
 
-var $imageBox = $('.photogallery-image');
+// элементы галереи
+
+var $imageSmall = $('.photogallery img');
+var $imageBig = $('.overlay-gallery-preview img');
+var $imageSmallBox = $('.photogallery-image');
+var $imageBigBox = $('.overlay-gallery-preview');
 var $overlay = $('.overlay-gallery');
+
+// навигация
+
 var $close = $('.overlay-gallery-close');
-var $current = $('.preview-number-current');
-var $total = $('preview-number-total');
-var currentStep = 1;
 var $next = $('.overlay-gallery-control-right');
 var $prev = $('.overlay-gallery-control-left');
+var $moreScreenShots = $('.btn');
 
+// функция отображения кол-ва скриншотов
 
-$imageBox.on('click', function() {
+var $ImageCount = $imageSmall.clone();
+var currentStep = 1;
+var $currentBox = $('.preview-number-current');
+var $totalBox = $('.preview-number-total');
+
+function totalImages() {
+    $totalBox.text($ImageCount.length);
+}
+
+//кнопка "Больше скриншотов"
+
+$moreScreenShots.on('click', function(event) {
+    event.preventDefault();
+    $(this).remove();
+    $imageSmallBox.filter('.invisible').removeClass('invisible');
+    totalImages();
+});
+
+//открытие галереи по клику на картинку
+
+$imageSmallBox.on('click', function() {
+    var $this = $(this);
     $overlay.removeClass('invisible');
-    $total.text($('img[data-img]').length);
-    currentStep = $(this).attr('data-img');
-    $current.text(currentStep);
-    $('.overlay-gallery-preview').append($(this).children('img'));
+    currentStep = $this.attr('data-img');
+    $currentBox.text(currentStep);
+    totalImages();
+    $this.children('img')
+        .clone()
+        .appendTo($imageBigBox)
+        .siblings('img')
+        .remove();
 });
 
-$close.on('click', function() {
-    $overlay.addClass('invisible');
-});
+//перелистывание картинок вперед и назад
 
 $next.on('click', function() {
     currentStep++;
-    $current.text(currentStep);
-
-    if (currentStep >= 6) {
-        currentStep = 5;
-    }
-});
-
-$next.on('click', function() {
-    $('.overlay-gallery-preview').append($imageBox.children('img').next());
-    currentStep++;
-    $current.text(currentStep);
-
-    if (currentStep > 6) {
-        currentStep = 6;
+    $currentBox.text(currentStep);
+    totalImages();
+    $imageSmall
+        .filter($('[data-img = ' + currentStep + ']'))
+        .clone().appendTo($imageBigBox)
+        .siblings('img')
+        .remove();
+    if (currentStep >= $totalBox.text()) {
+        currentStep = $totalBox.text();
+        $currentBox.text(currentStep);
     }
 });
 
 $prev.on('click', function() {
     currentStep--;
-    $current.text(currentStep);
-
+    $currentBox.text(currentStep);
+    totalImages();
+    $imageSmall
+        .filter($('[data-img = ' + currentStep + ']'))
+        .clone().appendTo($imageBigBox)
+        .siblings('img')
+        .remove();
     if (currentStep <= 1) {
         currentStep = 1;
+        $currentBox.text(currentStep);
     }
 });
+
+//закрытие галереи по нажатию крестика
+
+$close.on('click', function() {
+    $imageBig.remove().siblings('img').remove();
+    $overlay.addClass('invisible');
+});
+
+
+/**
+ * Reviews Filter
+ */
+
