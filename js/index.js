@@ -4,7 +4,7 @@
 
 var $window = $(window);
 
-//скролл облаков
+// Скролл облаков
 
 $window.scroll(function() {
     var scrolled = $window.scrollTop();
@@ -42,7 +42,7 @@ $window.keydown(function(event) {
             .removeClass('float');
     }
 
-    // передвижения мага
+    // Передвижения мага
 
     if (event.keyCode == right && descriptionIsInvisible) {
         event.preventDefault();
@@ -119,7 +119,7 @@ $window.keyup(function(event) {
  *ScreenShots Gallery
  */
 
-// элементы галереи
+// Элементы галереи
 
 var $imageSmall = $('.photogallery img');
 var $imageBig = $('.overlay-gallery-preview img');
@@ -127,14 +127,14 @@ var $imageSmallBox = $('.photogallery-image');
 var $imageBigBox = $('.overlay-gallery-preview');
 var $overlay = $('.overlay-gallery');
 
-// навигация
+// Навигация
 
-var $close = $('.overlay-gallery-close');
+var $closeGallery = $('.overlay-gallery-close');
 var $next = $('.overlay-gallery-control-right');
 var $prev = $('.overlay-gallery-control-left');
-var $moreScreenShots = $('.btn');
+var $moreScreenShots = $('.btn_screenshots');
 
-// функция отображения кол-ва скриншотов
+// Функция отображения кол-ва скриншотов
 
 var $ImageCount = $imageSmall.clone();
 var currentStep = 1;
@@ -145,7 +145,7 @@ function totalImages() {
     $totalBox.text($ImageCount.length);
 }
 
-//кнопка "Больше скриншотов"
+// Кнопка "Больше скриншотов"
 
 $moreScreenShots.on('click', function(event) {
     event.preventDefault();
@@ -154,7 +154,7 @@ $moreScreenShots.on('click', function(event) {
     totalImages();
 });
 
-//открытие галереи по клику на картинку
+// Открытие галереи по клику на картинку
 
 $imageSmallBox.on('click', function() {
     var $this = $(this);
@@ -169,7 +169,7 @@ $imageSmallBox.on('click', function() {
         .remove();
 });
 
-//перелистывание картинок вперед и назад
+// Перелистывание картинок вперед и назад
 
 $next.on('click', function() {
     currentStep++;
@@ -201,15 +201,94 @@ $prev.on('click', function() {
     }
 });
 
-//закрытие галереи по нажатию крестика
+// Закрытие галереи по нажатию крестика
 
-$close.on('click', function() {
+$closeGallery.on('click', function(event) {
+    event.preventDefault();
     $imageBig.remove().siblings('img').remove();
     $overlay.addClass('invisible');
 });
 
+/**
+ * Reviews
+ */
+
+var $moreReviews = $('.reviews-controls-more');
+var $addReview = $('.reviews-controls-new');
+var $review = $('.review');
+var $reviewForm = $('.overlay-container');
+var $closeForm = $('.review-form-close');
+
+$moreReviews.on('click', function(event) {
+    event.preventDefault();
+    $(this).remove();
+    $review.filter('.invisible').removeClass('invisible');
+});
+
+$addReview.on('click', function(event) {
+    event.preventDefault();
+
+    $reviewForm.removeClass('invisible');
+});
+
+$closeForm.on('click', function(event) {
+    event.preventDefault();
+
+    $reviewForm.addClass('invisible');
+});
 
 /**
- * Reviews Filter
+ * Filter reviews
  */
+
+var $filterAll = $('[for=reviews-all]');
+var $filterGood = $('[for=reviews-good]');
+var $filterBad = $('[for=reviews-bad]');
+var $filterRecent = $('[for=reviews-recent]');
+var $filterPopular = $('[for=reviews-popular]');
+
+var $ratingBad = $('.review-rating[data-star=1], .review-rating[data-star=2], .review-rating[data-star=3]');
+var $ratingGood = $('.review-rating[data-star=4], .review-rating[data-star=5]');
+
+$filterGood.on('click', function(event) {
+    event.preventDefault();
+
+    $('#reviews-good').prop('checked', true);
+    $ratingBad.closest($review).addClass('invisible');
+    $ratingGood.closest($review).removeClass('invisible');
+    $moreReviews.remove();
+});
+
+$filterBad.on('click', function(event) {
+    event.preventDefault();
+
+    $('#reviews-bad').prop('checked', true);
+    $ratingGood.closest($review).addClass('invisible');
+    $ratingBad.closest($review).removeClass('invisible');
+    $moreReviews.remove();
+});
+
+$filterAll.on('click', function(event) {
+    event.preventDefault();
+    $('#reviews-all').prop('checked', true);
+    $review.removeClass('invisible');
+});
+
+$filterRecent.on('click', function(event) {
+    event.preventDefault();
+    $('#reviews-recent').prop('checked', true);
+    $moreReviews.remove();
+});
+
+$filterPopular.on('click', function(event) {
+    event.preventDefault();
+    $('#reviews-popular').prop('checked', true);
+    $moreReviews.remove();
+});
+
+
+
+
+
+
 

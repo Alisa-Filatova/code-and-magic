@@ -37,6 +37,11 @@ h2 {
   background: transparent;
   margin-top: 40px;
   cursor: pointer;
+  color: #000;
+  border: solid 1px;
+  font-size: 18px;
+  line-height: 36px;
+  padding: 0 18px;
 }
 
 
@@ -233,6 +238,7 @@ main {
 }
 
 .reviews-filter-item {
+  background: transparent;
   border-bottom: dotted 2px #fff;
   color: #fff;
   cursor: pointer;
@@ -309,14 +315,24 @@ input[type=radio]:checked + .reviews-filter-item {
   background: url('../img/icon-star.png') top left repeat-x;
   display: block;
   height: 30px;
+}
+
+.review-rating[data-star="1"] {
   width: 30px;
 }
 
-.review-rating-one {  }
-.review-rating-two { width: 60px; }
-.review-rating-three { width: 90px; }
-.review-rating-four { width: 120px; }
-.review-rating-five { width: 150px; }
+.review-rating[data-star="2"] {
+  width: 60px;
+}
+.review-rating[data-star="3"] {
+  width: 90px;
+}
+.review-rating[data-star="4"] {
+  width: 120px;
+}
+.review-rating[data-star="5"] {
+  width: 150px;
+}
 
 .review-author {
   border-radius: 50%;
@@ -352,6 +368,7 @@ input[type=radio]:checked + .reviews-filter-item {
 }
 
 .reviews-controls-item {
+  background: transparent;
   cursor: pointer;
   display: inline-block;
   vertical-align: middle;
@@ -374,6 +391,7 @@ input[type=radio]:checked + .reviews-filter-item {
   font-size: 18px;
   line-height: 36px;
   padding: 0 18px;
+  margin-top: 0;
 }
 
 footer {
