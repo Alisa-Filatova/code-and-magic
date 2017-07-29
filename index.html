@@ -2,22 +2,19 @@
 <html lang="ru">
   <head>
       <meta charset="utf-8">
-    
       <link href="https://fonts.googleapis.com/css?family=PT+Mono&amp;subset=latin,cyrillic" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&amp;subset=cyrillic" rel="stylesheet">
-      <link rel="stylesheet" href="css/main.css">
+      <link rel="stylesheet" href="css/index.css">
       <title>Code and Magick</title>
   </head>
   <body>
 
       <header class="header">
-          <div class="clouds"></div>
-          <div class="fence"></div>
-          <div class="tree"></div>
 
+          <div class="clouds"></div>
           <span class="header-soon">Скоро</span>
-          <h1 class="header-title">Code and Magick</h1>
-          <p class="header-description">
+          <h1 class="header__title">Code and Magick</h1>
+          <p class="header__description">
               Это игра, где главного героя, которым вам предстоит
               управлять и изменять заклинаниями окружающий мир,
               зовут Пендальф Синий.
@@ -25,9 +22,11 @@
           </p>
 
           <div class="demo">
+
               <div class="wizard float">
                   <div class="fireball"></div>
               </div>
+
               <div class="demo__description">
                   <p class="demo__description_text">
                       Я перемещаюсь по нажатию на стрелки
@@ -35,46 +34,93 @@
                       Скорее жми на <b>пробел</b>, и игра начнется...
                   </p>
               </div>
+
+              <div class="fence"></div>
+              <div class="tree"></div>
           </div>
       </header>
 
       <main>
           <section class="main-section photogallery">
-              <h2 class="section-title photogallery-title">Скриншоты</h2>
+              <h2 class="main-section__title photogallery__title">Скриншоты</h2>
 
-              <a href="#" class="photogallery-image" data-img="1">
-                  <img src="img/screenshots/1.png" data-img="1">
+              <a href="" class="photogallery__image-box" data-img="1">
+                  <img
+                      class="photogallery__image"
+                      src="img/screenshots/1.png"
+                      data-img="1"
+                      alt=""
+                  >
               </a>
-              <a href="#" class="photogallery-image" data-img="2">
-                  <img src="img/screenshots/2.png" data-img="2">
+              <a href="" class="photogallery__image-box" data-img="2">
+                  <img
+                      class="photogallery__image"
+                      src="img/screenshots/2.png"
+                      data-img="2"
+                      alt=""
+                  >
               </a>
-              <a href="#" class="photogallery-image" data-img="3">
-                  <img src="img/screenshots/3.png" data-img="3">
+              <a href="" class="photogallery__image-box" data-img="3">
+                  <img
+                      class="photogallery__image"
+                      src="img/screenshots/3.png"
+                      data-img="3"
+                      alt=""
+                  >
               </a>
-              <a href="#" class="photogallery-image" data-img="4">
-                  <img src="img/screenshots/4.png" data-img="4">
+              <a href="" class="photogallery__image-box" data-img="4">
+                  <img
+                      class="photogallery__image"
+                      src="img/screenshots/4.png"
+                      data-img="4"
+                      alt=""
+                  >
               </a>
-              <a href="#" class="photogallery-image" data-img="5">
-                  <img src="img/screenshots/5.png" data-img="5">
+              <a href="" class="photogallery__image-box" data-img="5">
+                  <img
+                      class="photogallery__image"
+                      src="img/screenshots/5.png"
+                      data-img="5"
+                      alt=""
+                  >
               </a>
-              <a href="#" class="photogallery-image" data-img="6">
-                  <img src="img/screenshots/6.png" data-img="6">
+              <a href="" class="photogallery__image-box" data-img="6">
+                  <img
+                      class="photogallery__image"
+                      src="img/screenshots/6.png"
+                      data-img="6"
+                      alt=""
+                  >
               </a>
-              <a href="#" class="photogallery-image invisible" data-img="7">
-                  <img src="img/screenshots/7.png" data-img="7">
+              <a href="" class="photogallery__image-box invisible" data-img="7">
+                  <img
+                      class="photogallery__image"
+                      src="img/screenshots/7.png"
+                      data-img="7"
+                      alt=""
+                  >
               </a>
-              <a href="#" class="photogallery-image invisible" data-img="8">
-                  <img src="img/screenshots/8.png" data-img="8">
+              <a href="" class="photogallery__image-box invisible" data-img="8">
+                  <img
+                      class="photogallery__image"
+                      src="img/screenshots/8.png"
+                      data-img="8"
+                      alt=""
+                  >
               </a>
-              <a href="#" class="photogallery-image invisible" data-img="9">
-                  <img src="img/screenshots/9.png" data-img="9">
+              <a href="" class="photogallery__image-box invisible" data-img="9">
+                  <img
+                      class="photogallery__image"
+                      src="img/screenshots/9.png"
+                      data-img="9"
+                  >
               </a>
 
-              <button class="btn btn_screenshots" type="button">+ Больше скриншотов</button>
+              <button class="btn photogallery__btn" type="button">+ Больше скриншотов</button>
           </section>
 
           <section class="main-section reviews">
-              <h2 class="section-title reviews-title">Отзывы</h2>
+              <h2 class="main-section__title reviews__title">Отзывы</h2>
               <form class="reviews-filter" action="index.html" method="get">
                   <input
                       type="radio"
@@ -83,238 +129,322 @@
                       value="reviews-all"
                       checked
                   >
-                  <label for="reviews-all" class="reviews-filter-item">Все</label>
+                  <label
+                      for="reviews-all"
+                      class="reviews-filter__item"
+                  >
+                      Все
+                  </label>
                   <input
                       type="radio"
                       name="reviews"
                       id="reviews-good"
                       value="reviews-good"
                   >
-                  <label for="reviews-good" class="reviews-filter-item">Хорошие</label>
+                  <label
+                      for="reviews-good"
+                      class="reviews-filter__item"
+                  >
+                      Хорошие
+                  </label>
                   <input
                       type="radio"
                       name="reviews"
                       id="reviews-bad"
                       value="reviews-bad"
                   >
-                  <label for="reviews-bad" class="reviews-filter-item">Плохие</label>
+                  <label
+                      for="reviews-bad"
+                      class="reviews-filter__item"
+                  >
+                      Плохие
+                  </label>
                   <input
                       type="radio"
                       name="reviews"
                       id="reviews-popular"
                       value="reviews-popular"
                   >
-                  <label for="reviews-popular" class="reviews-filter-item">Популярные</label>
+                  <label
+                      for="reviews-popular"
+                      class="reviews-filter__item"
+                  >
+                      Популярные
+                  </label>
                   <input
                       type="radio"
                       name="reviews"
                       id="reviews-recent"
                       value="reviews-recent"
                   >
-                  <label for="reviews-recent" class="reviews-filter-item">Недавние</label>
+                  <label
+                      for="reviews-recent"
+                      class="reviews-filter__item"
+                  >
+                      Недавние
+                  </label>
               </form>
 
               <div class="reviews-list">
                   <article class="review">
-                      <img src="img/user-1.jpg" class="review-author" alt="Димон Медведкин">
-                      <span class="review-rating" data-star="1"></span>
-                      <p class="review-text">
+                      <img 
+                          src="img/user-1.jpg" 
+                          class="review__author" 
+                          alt="Димон Медведкин"
+                      >
+                      <span class="review__rating" data-star="1"></span>
+                      <p class="review__text">
                           Плохая игра: слишком сильно затягивает
                           и невозможно оторваться. Я потерял работу, учебу, девушку
                           и дар речи, но продолжаю играть. Это призыв о помощи: спасите.
                       </p>
-                      <div class="review-quiz">
+                      <div class="review__quiz">
                           Полезный отзыв?
-                          <span class="review-quiz-answer review-quiz-answer-yes">Да</span>
-                          <span class="review-quiz-answer review-quiz-answer-no">Нет</span>
+                          <span class="review__quiz-answer review__quiz-answer_yes">Да</span>
+                          <span class="review__quiz-answer review__quiz-answer_no">Нет</span>
                       </div>
                   </article>
                   <article class="review">
-                      <img src="img/user-2.png" class="review-author" alt="Мила Йовович">
-                      <span class="review-rating" data-star="5"></span>
-                      <p class="review-text">
+                      <img
+                          src="img/user-2.png"
+                          class="review__author"
+                          alt="Мила Йовович"
+                      >
+                      <span class="review__rating" data-star="5"></span>
+                      <p class="review__text">
                           Невероятно чумовая игра. Пендальф-синий — мой герой))))
                           Он такой милашка. Благодаря ему я наконец научилась
                           отвлекаться от работы и учёбы.
                       </p>
-                      <div class="review-quiz">
+                      <div class="review__quiz">
                           Полезный отзыв?
-                          <span class="review-quiz-answer review-quiz-answer-yes">Да</span>
-                          <span class="review-quiz-answer review-quiz-answer-no">Нет</span>
+                          <span class="review__quiz-answer review__quiz-answer_yes">Да</span>
+                          <span class="review__quiz-answer review__quiz-answer_no">Нет</span>
                       </div>
                   </article>
                   <article class="review">
-                      <img src="img/user-3.jpg" class="review-author" alt="Ван Гоги">
-                      <span class="review-rating" data-star="4"></span>
-                      <p class="review-text">
+                      <img
+                          src="img/user-3.jpg"
+                          class="review__author"
+                          alt="Ван Гоги"
+                      >
+                      <span class="review__rating" data-star="4"></span>
+                      <p class="review__text">
                           Игра очень неплохая. Тут есть и трюки, и взлёты, и падения.
                           Никогда не знаешь, что ждёт тебя впереди.
                       </p>
-                      <div class="review-quiz">
+                      <div class="review__quiz">
                           Полезный отзыв?
-                          <span class="review-quiz-answer review-quiz-answer-yes">Да</span>
-                          <span class="review-quiz-answer review-quiz-answer-no">Нет</span>
+                          <span class="review__quiz-answer review__quiz-answer_yes">Да</span>
+                          <span class="review__quiz-answer review__quiz-answer_no">Нет</span>
                       </div>
                   </article>
                   <article class="review invisible">
-                      <img src="img/user-6.jpg" class="review-author" alt="Шварц" title="">
-                      <span class="review-rating" data-star="5"></span>
-                      <p class="review-text">Понравилось. Я вернусь!</p>
-                      <div class="review-quiz">
+                      <img
+                          src="img/user-6.jpg"
+                          class="review__author"
+                          alt="Шварц"
+                      >
+                      <span class="review__rating" data-star="5"></span>
+                      <p class="review__text">Понравилось. Я вернусь!</p>
+                      <div class="review__quiz">
                           Полезный отзыв?
-                          <span class="review-quiz-answer review-quiz-answer-yes">Да</span>
-                          <span class="review-quiz-answer review-quiz-answer-no">Нет</span>
+                          <span class="review__quiz-answer review__quiz-answer_yes">Да</span>
+                          <span class="review__quiz-answer review__quiz-answer_no">Нет</span>
                       </div>
                   </article>
                   <article class="review invisible">
-                      <img src="img/user-5.png" class="review-author" alt="Кончита">
-                      <span class="review-rating" data-star="3"></span>
-                      <p class="review-text">
+                      <img
+                          src="img/user-5.png"
+                          class="review__author"
+                          alt="Кончита"
+                      >
+                      <span class="review__rating" data-star="3"></span>
+                      <p class="review__text">
                           Игра не очень интересная. Нравится возможность
                           выбирать между героями, что есть
                           альтернативные концовки в игре. Но мне мало!!!
                           Больше уровней!
                       </p>
-                      <div class="review-quiz">
+                      <div class="review__quiz">
                           Полезный отзыв?
-                          <span class="review-quiz-answer review-quiz-answer-yes">Да</span>
-                          <span class="review-quiz-answer review-quiz-answer-no">Нет</span>
+                          <span class="review__quiz-answer review__quiz-answer_yes">Да</span>
+                          <span class="review__quiz-answer review__quiz-answer_no">Нет</span>
                       </div>
                   </article>
                   <article class="review invisible">
-                      <img src="img/user-4.jpg" class="review-author" alt="Ксения Собчак">
-                      <span class="review-rating" data-star="1"></span>
-                      <p class="review-text">Плохо, мне не нравится!</p>
-                      <div class="review-quiz">
+                      <img
+                          src="img/user-4.jpg"
+                          class="review__author"
+                          alt="Ксения Собчак"
+                      >
+                      <span class="review__rating" data-star="1"></span>
+                      <p class="review__text">Плохо, мне не нравится!</p>
+                      <div class="review__quiz">
                           Полезный отзыв?
-                          <span class="review-quiz-answer review-quiz-answer-yes">Да</span>
-                          <span class="review-quiz-answer review-quiz-answer-no">Нет</span>
+                          <span class="review__quiz-answer review__quiz-answer_yes">Да</span>
+                          <span class="review__quiz-answer review__quiz-answer_no">Нет</span>
                       </div>
                   </article>
               </div>
 
               <div class="reviews-controls">
-                  <button class="reviews-controls-item reviews-controls-more">+ Еще отзывы</button>
-                  <button class="reviews-controls-item reviews-controls-new btn">+ Добавить свой</button>
+                  <button class="reviews__btn reviews__btn_more btn">+ Еще отзывы</button>
+                  <button class="reviews__btn reviews__btn_add btn">+ Добавить свой</button>
               </div>
           </section>
-
-          <footer>
-              <a href="http://htmlacademy.ru">
-                  <img
-                      src="img/htmlacademy-logo.png"
-                      alt="HTML Academy"
-                      width="134"
-                      height="37"
-                  >
-              </a>
-              <p>
-                  <a href="http://htmlacademy.ru">Сделано в HTML Academy</a><br>
-                  в 2017 году
-              </p>
-          </footer>
       </main>
 
-      <div class="overlay-container invisible">
-          <form class="overlay review-form" action="index.html" method="post">
-              <h2 class="review-form-title">Оставить отзыв</h2>
-              <span class="review-form-close">&times;</span>
+      <footer class="footer">
+          <a href="http://htmlacademy.ru" target="_blank">
+              <img
+                  src="img/htmlacademy-logo.png"
+                  alt="HTML Academy"
+                  width="134"
+                  height="37"
+                  class="logo-academy"
+              >
+          </a>
+          <p>
+              <a
+                  class="footer__link"
+                  href="http://htmlacademy.ru"
+                  target="_blank"
+              >
+                  2017 for HTML Academy
+              </a><br><br>
+              <a
+                  href="http://alicedesign.ru/"
+                  target="_blank"
+                  class="footer__link"
+              >
+                  by Alisa Filatova
+              </a>
+          </p>
+      </footer>
 
-              <fieldset class="review-form-group review-form-group-mark">
-                  <span class="review-form-label">Оценка</span><br>
+      <div class="overlay-review-form invisible">
+          <form class="review-form" action="index.html" method="post">
+              <h2 class="review-form__title">Оставить отзыв</h2>
+              <button type="button" class="review-form__btn_close">&times;</button>
+
+              <fieldset class="review-form__group review-form__group_mark">
+                  <span class="review-form__label">Оценка</span><br>
                   <input
                       type="radio"
                       name="review-mark"
-                      id="review-mark-1"
+                      id="review-mark_1"
                       value="1"
                   >
-                  <label class="review-mark-label review-mark-label-1" for="review-mark-1">1</label>
+                  <label class="review-mark__label review-mark__label_1" for="review-mark_1">1</label>
                   <input
                       type="radio"
                       name="review-mark"
-                      id="review-mark-2"
+                      id="review-mark_2"
                       value="2"
                   >
-                  <label class="review-mark-label review-mark-label-2" for="review-mark-2">2</label>
+                  <label class="review-mark__label review-mark__label_2" for="review-mark_2">2</label>
                   <input
                       type="radio"
                       name="review-mark"
-                      id="review-mark-3"
+                      id="review-mark_3"
                       value="3"
                       checked
                   >
-                  <label class="review-mark-label review-mark-label-3" for="review-mark-3">3</label>
+                  <label class="review-mark__label review-mark__label_3" for="review-mark_3">3</label>
                   <input
                       type="radio"
                       name="review-mark"
-                      id="review-mark-4"
+                      id="review-mark_4"
                       value="4"
                   >
-                  <label class="review-mark-label review-mark-label-4" for="review-mark-4">4</label>
+                  <label class="review-mark__label review-mark__label_4" for="review-mark_4">4</label>
                   <input
                       type="radio"
                       name="review-mark"
-                      id="review-mark-5"
+                      id="review-mark_5"
                       value="5"
                   >
-                  <label class="review-mark-label review-mark-label-5" for="review-mark-5">5</label>
+                  <label class="review-mark__label review-mark__label_5" for="review-mark_5">5</label>
               </fieldset>
 
-              <fieldset class="review-form-group">
-                  <label for="review-name" class="review-form-label">Имя</label><br>
+              <fieldset class="review-form__group">
+                  <label for="review-name" class="review-form__label">Имя</label><br>
                   <input
                       type="text"
                       name="review-name"
                       id="review-name"
-                      class="review-form-field review-form-field-name"
+                      class="review-form__field review-form__field_name"
                       required
                   >
               </fieldset>
 
-              <fieldset class="review-form-group">
-                  <label for="review-text" class="review-form-label">Отзыв</label><br>
+              <fieldset class="review-form__group">
+                  <label for="review-text" class="review-form__label">Отзыв</label><br>
                   <textarea
-                      name="review-text"
+                      name="review__text"
                       id="review-text"
-                      class="review-form-field review-form-field-text"
+                      class="review-form__field review-form__field_text"
                       cols="32"
                       rows="8"></textarea>
               </fieldset>
 
-              <div class="review-form-controls">
-                  <button class="review-form-control review-submit" type="submit">Добавить отзыв</button>
-                  <div class="review-form-control review-fields">
+              <div class="review-form__controls">
+                  <button
+                      class="review-form-control review__btn review__btn_submit"
+                      type="submit"
+                  >
+                      Добавить отзыв
+                  </button>
+
+                  <div class="review-form-control review__fields">
                       Осталось заполнить:<br>
-                      <label for="review-name" class="review-fields-label review-fields-name">имя</label>
-                      <label for="review-text" class="review-fields-label review-fields-text">отзыв</label>
+                      <label
+                          for="review-name"
+                          class="review__fields_label review__fields_name"
+                      >
+                          имя
+                      </label>
+                      <label
+                          for="review-text"
+                          class="review__fields_label review__fields_text"
+                      >
+                          отзыв
+                      </label>
                   </div>
               </div>
           </form>
       </div>
 
       <div class="overlay-gallery invisible">
-          <span class="overlay-gallery-close">&times;</span>
-          <div class="overlay-gallery-controls">
-              <div class="overlay-gallery-control overlay-gallery-control-left"></div>
-              <div class="overlay-gallery-preview">
-                  <div class="overlay-gallery-preview-number">
-                      <span class="preview-number-current"></span> из
-                      <span class="preview-number-total"></span>
+          <button
+              type="button"
+              class="gallery__btn gallery__btn_close"
+          >
+              &times;
+          </button>
+
+          <div class="overlay-gallery__controls">
+              <div class="overlay-gallery-control overlay-gallery-control_left"></div>
+              <div class="overlay-gallery__preview">
+                  <div class="overlay-gallery__preview-number">
+                      <span class="preview-number_current"></span> из
+                      <span class="preview-number_total"></span>
                   </div>
               </div>
-              <div class="overlay-gallery-control overlay-gallery-control-right"></div>
+              <div class="overlay-gallery-control overlay-gallery-control_right"></div>
            </div>
       </div>
 
       <template id="review-template invisible">
           <article class="review">
-              <img src="" class="review-author" alt="" title="">
-              <span class="review-rating"></span>
-              <p class="review-text"></p>
-              <div class="review-quiz">
+              <img src="" class="review__author" alt="" title="">
+              <span class="review__rating"></span>
+              <p class="review__text"></p>
+              <div class="review__quiz">
                   Полезный отзыв?
-                  <span class="review-quiz-answer review-quiz-answer-yes">Да</span>
-                  <span class="review-quiz-answer review-quiz-answer-no">Нет</span>
+                  <span class="review__quiz-answer review__quiz-answer_yes">Да</span>
+                  <span class="review__quiz-answer review__quiz-answer_no">Нет</span>
               </div>
           </article>
       </template>

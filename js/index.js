@@ -105,6 +105,7 @@ $window.keydown(function(event) {
 
     if (event.keyCode == keyCodes.shift && descriptionIsInvisible && $wizard.not('.wizard-reversed') && galleryIsInvisible) {
         event.preventDefault();
+
         $fireball
             .clone()
             .removeClass('fireball-reversed')
@@ -115,24 +116,25 @@ $window.keydown(function(event) {
 
         setTimeout(function() {
             $('.slide-out-right').remove();
-            $descriptionText.text('Ты убил кого-то случайным фаерболом! Гордись своей победой жестокий человек! GAME OVER');
-            $description.removeClass('invisible');
+            //$descriptionText.text('Ты убил кого-то случайным фаерболом! Гордись своей победой жестокий человек! GAME OVER');
+            //$description.removeClass('invisible');
         }, 5000);
     }
 
     if (event.keyCode == keyCodes.shift && descriptionIsInvisible && $wizard.hasClass('wizard-reversed') && galleryIsInvisible) {
         event.preventDefault();
+
         $fireball
             .clone()
-            .addClass('slide-out-left fireball-reversed')
+            .addClass('slide-out-left')
             .prependTo($wizard);
 
         $('.slide-out-right').remove();
 
         setTimeout(function() {
             $('.slide-out-left').remove();
-            $descriptionText.text('Ты убил кого-то случайным фаерболом! Гордись своей победой жестокий человек! GAME OVER');
-            $description.removeClass('invisible');
+            //$descriptionText.text('Ты убил кого-то случайным фаерболом! Гордись своей победой жестокий человек! GAME OVER');
+            //$description.removeClass('invisible');
         }, 5000);
     }
 });
@@ -156,25 +158,25 @@ $window.keyup(function(event) {
 
 // Элементы галереи
 
-var $imageSmall = $('.photogallery img');
+var $imageSmall = $('.photogallery__image');
 var $imageBig = $('.overlay-gallery-preview img');
-var $imageSmallBox = $('.photogallery-image');
-var $imageBigBox = $('.overlay-gallery-preview');
+var $imageSmallBox = $('.photogallery__image-box');
+var $imageBigBox = $('.overlay-gallery__preview');
 var $overlayGallery = $('.overlay-gallery');
 
 // Навигация
 
-var $closeGallery = $('.overlay-gallery-close');
-var $next = $('.overlay-gallery-control-right');
-var $prev = $('.overlay-gallery-control-left');
-var $moreScreenShots = $('.btn_screenshots');
+var $closeGallery = $('.gallery__btn_close');
+var $next = $('.overlay-gallery-control_right');
+var $prev = $('.overlay-gallery-control_left');
+var $moreScreenShots = $('.photogallery__btn');
 
 // Функция отображения кол-ва скриншотов
 
 var $ImageCount = $imageSmall.clone();
 var currentStep = 1;
-var $currentBox = $('.preview-number-current');
-var $totalBox = $('.preview-number-total');
+var $currentBox = $('.preview-number_current');
+var $totalBox = $('.preview-number_total');
 
 function totalImages() {
     $totalBox.text($ImageCount.length);
@@ -193,7 +195,8 @@ $moreScreenShots.on('click', function(event) {
 
 // Открытие галереи по клику на картинку
 
-$imageSmallBox.on('click', function() {
+$imageSmallBox.on('click', function(event) {
+    event.preventDefault();
     var $this = $(this);
     $overlayGallery.removeClass('invisible');
     currentStep = $this.attr('data-img');
@@ -293,11 +296,11 @@ $closeGallery.on('click', function(event) {
  * Reviews
  */
 
-var $moreReviews = $('.reviews-controls-more');
-var $addReview = $('.reviews-controls-new');
+var $moreReviews = $('.reviews__btn_more');
+var $addReview = $('.reviews__btn_add');
 var $review = $('.review');
-var $reviewOverlay = $('.overlay-container');
-var $closeForm = $('.review-form-close');
+var $reviewOverlay = $('.overlay-review-form');
+var $closeForm = $('.review-form__btn_close');
 
 $moreReviews.on('click', function(event) {
     event.preventDefault();
@@ -318,7 +321,7 @@ $closeForm.on('click', function(event) {
 });
 
 $window.keydown(function() {
-    if (event.keyCode == keyCodes.esc && $reviewForm.not('invisible')) {
+    if (event.keyCode == keyCodes.esc && $reviewOverlay.not('invisible')) {
         $reviewOverlay.addClass('invisible');
     }
 });
@@ -338,8 +341,8 @@ var $filterBadRadio = $('#reviews-bad');
 var $filterRecentRadio = $('#reviews-recent');
 var $filterPopularRadio = $('#reviews-popular');
 
-var $ratingBad = $('.review-rating[data-star=1], .review-rating[data-star=2], .review-rating[data-star=3]');
-var $ratingGood = $('.review-rating[data-star=4], .review-rating[data-star=5]');
+var $ratingBad = $('.review__rating[data-star=1], .review__rating[data-star=2], .review__rating[data-star=3]');
+var $ratingGood = $('.review__rating[data-star=4], .review__rating[data-star=5]');
 
 $filterGood.on('click', function() {
     $filterGoodRadio.prop('checked', true);
