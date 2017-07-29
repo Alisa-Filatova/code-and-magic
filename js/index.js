@@ -3,12 +3,31 @@
  */
 
 var $window = $(window);
+var $wizard = $('.wizard');
+var $clouds = $('.clouds');
+var $description = $('.demo__description');
+var $descriptionText = $('.demo__description_text');
+var $fireball = $('.fireball');
+
+var $demoWidth = $('.demo').width();
+var demoHeight = 210 + 'px';
+
+var steps = 100;
+
+var keyCodes = {
+    right: 39,
+    left: 37,
+    top: 38,
+    bottom: 40,
+    shift: 16,
+    spaceBar: 32,
+    esc: 27
+};
 
 // Скролл облаков
 
 $window.scroll(function() {
     var scrolled = $window.scrollTop();
-    var $clouds = $('.clouds');
 
     $clouds.css('background-position-x', -scrolled + 'px');
 });
@@ -17,22 +36,12 @@ $window.scroll(function() {
  * DEMO
  */
 $window.keydown(function(event) {
-    var $wizard = $('.wizard');
-    var $description = $('.demo__description');
-    var $fireball = $('.fireball');
-    var positionLeft = $wizard.position().left;
-    var positionTop = $wizard.position().top;
-
-    var right = 39;
-    var left = 37;
-    var top = 38;
-    var bottom = 40;
-    var spaceBar = 32;
-    var shift = 16;
+    var $positionLeft = $wizard.position().left;
 
     var descriptionIsInvisible = $description.hasClass('invisible');
+    var galleryIsInvisible = $('.overlay-gallery').hasClass('invisible');
 
-    if (event.keyCode == spaceBar) {
+    if (event.keyCode == keyCodes.spaceBar) {
         event.preventDefault();
 
         $description.addClass('invisible');
@@ -44,73 +53,100 @@ $window.keydown(function(event) {
 
     // Передвижения мага
 
-    if (event.keyCode == right && descriptionIsInvisible) {
+    if (event.keyCode == keyCodes.right && descriptionIsInvisible && galleryIsInvisible) {
         event.preventDefault();
 
-        $wizard
-            .css('transform', 'translateX(' + positionLeft + 'px)')
-            .removeClass('wizard-reversed');
+        if ($positionLeft > $demoWidth) {
+            return;
+        }
+
+        $wizard.removeClass('wizard-reversed')
+            .css({
+                left: $positionLeft + steps + 'px',
+                transition: 0.3 + 's'
+            });
 
         $fireball.removeClass('fireball-reversed');
-
-        if (positionLeft >= 700 || positionLeft <= -150) {
-            return;
-        }
     }
 
-    if (event.keyCode == left && descriptionIsInvisible) {
+    if (event.keyCode == keyCodes.left && descriptionIsInvisible && galleryIsInvisible) {
         event.preventDefault();
 
-        $wizard
-            .css('transform', 'translateX(' + -positionLeft + 'px)')
-            .addClass('wizard-reversed');
+        if ($positionLeft < 0) {
+            return;
+        }
+
+        $wizard.addClass('wizard-reversed')
+            .css({
+                left: $positionLeft - steps + 'px',
+                transition: 0.3 + 's'
+            });
 
         $fireball.addClass('fireball-reversed');
-
-        if (positionLeft >= 700 || positionLeft <= -150) {
-            return;
-        }
     }
 
-    if (event.keyCode == top && descriptionIsInvisible) {
+    if (event.keyCode == keyCodes.top && descriptionIsInvisible && galleryIsInvisible) {
         event.preventDefault();
-        $wizard.css('transform', 'translateY(' + -positionTop + 'px)');
+        $wizard.css({
+            bottom: demoHeight,
+            transition: 0.3 + 's'
+        });
     }
 
-    if (event.keyCode == bottom && descriptionIsInvisible) {
+    if (event.keyCode == keyCodes.bottom && descriptionIsInvisible && galleryIsInvisible) {
         event.preventDefault();
-        $wizard.css('transform', 'translateY(0)');
+        $wizard.css({
+            bottom: 0,
+            transition: 0.3 + 's'
+        });
     }
 
     // Запуск фаербола
 
-    if (event.keyCode == shift && descriptionIsInvisible && $wizard.hasClass('wizard-reversed')) {
+    if (event.keyCode == keyCodes.shift && descriptionIsInvisible && $wizard.not('.wizard-reversed') && galleryIsInvisible) {
         event.preventDefault();
-        $fireball.addClass('slide-out-left');
+        $fireball
+            .clone()
+            .removeClass('fireball-reversed')
+            .addClass('slide-out-right')
+            .prependTo($wizard);
+
+        $('.slide-out-left').remove();
+
+        setTimeout(function() {
+            $('.slide-out-right').remove();
+            $descriptionText.text('Ты убил кого-то случайным фаерболом! Гордись своей победой жестокий человек! GAME OVER');
+            $description.removeClass('invisible');
+        }, 5000);
     }
 
-    if (event.keyCode == shift && descriptionIsInvisible) {
+    if (event.keyCode == keyCodes.shift && descriptionIsInvisible && $wizard.hasClass('wizard-reversed') && galleryIsInvisible) {
         event.preventDefault();
-        $fireball.addClass('slide-out-right');
+        $fireball
+            .clone()
+            .addClass('slide-out-left fireball-reversed')
+            .prependTo($wizard);
+
+        $('.slide-out-right').remove();
+
+        setTimeout(function() {
+            $('.slide-out-left').remove();
+            $descriptionText.text('Ты убил кого-то случайным фаерболом! Гордись своей победой жестокий человек! GAME OVER');
+            $description.removeClass('invisible');
+        }, 5000);
     }
 });
 
 $window.keyup(function(event) {
-    var $wizard = $('.wizard');
-    var $fireball = $('.fireball');
-    var shift = 16;
-    var descriptionIsInvisible = $('.demo__description').hasClass('invisible');
+    var descriptionIsInvisible = $description.hasClass('invisible');
+    var galleryIsInvisible = $('.overlay-gallery').hasClass('invisible');
 
-    if (event.keyCode == shift && descriptionIsInvisible && $wizard.hasClass('wizard-reversed')) {
-        setTimeout(function() {
-            $fireball.removeClass('slide-out-left');
-        }, 500);
-    }
-
-    if (event.keyCode == shift && descriptionIsInvisible) {
-        setTimeout(function() {
-            $fireball.removeClass('slide-out-right');
-        }, 500);
+    if (event.keyCode == keyCodes.top && descriptionIsInvisible && galleryIsInvisible) {
+        event.preventDefault();
+        $wizard.css({
+            bottom: 0,
+            transition: 1 +'s ease-in'
+        });
     }
 });
 
@@ -124,7 +160,7 @@ var $imageSmall = $('.photogallery img');
 var $imageBig = $('.overlay-gallery-preview img');
 var $imageSmallBox = $('.photogallery-image');
 var $imageBigBox = $('.overlay-gallery-preview');
-var $overlay = $('.overlay-gallery');
+var $overlayGallery = $('.overlay-gallery');
 
 // Навигация
 
@@ -149,7 +185,9 @@ function totalImages() {
 $moreScreenShots.on('click', function(event) {
     event.preventDefault();
     $(this).remove();
-    $imageSmallBox.filter('.invisible').removeClass('invisible');
+    $imageSmallBox
+        .filter('.invisible')
+        .removeClass('invisible');
     totalImages();
 });
 
@@ -157,11 +195,12 @@ $moreScreenShots.on('click', function(event) {
 
 $imageSmallBox.on('click', function() {
     var $this = $(this);
-    $overlay.removeClass('invisible');
+    $overlayGallery.removeClass('invisible');
     currentStep = $this.attr('data-img');
     $currentBox.text(currentStep);
     totalImages();
-    $this.children('img')
+    $this
+        .children('img')
         .clone()
         .appendTo($imageBigBox)
         .siblings('img')
@@ -201,12 +240,10 @@ $prev.on('click', function() {
 });
 
 $window.keydown(function() {
-    var right = 39;
-    var left = 37;
-    var esc = 27;
-    var $checkOverlay = $overlay.not('invisible');
 
-    if (event.keyCode == right && $checkOverlay) {
+    var $checkOverlay = $overlayGallery.not('invisible');
+
+    if (event.keyCode == keyCodes.right && $checkOverlay) {
         currentStep++;
         $currentBox.text(currentStep);
         totalImages();
@@ -221,7 +258,7 @@ $window.keydown(function() {
         }
     }
 
-    if (event.keyCode == left && $checkOverlay) {
+    if (event.keyCode == keyCodes.left && $checkOverlay) {
         currentStep--;
         $currentBox.text(currentStep);
         totalImages();
@@ -238,9 +275,9 @@ $window.keydown(function() {
 
     // Закрытие галереи по нажатию esc
 
-    if (event.keyCode == esc && $checkOverlay) {
+    if (event.keyCode == keyCodes.esc && $checkOverlay) {
         $imageBig.remove().siblings('img').remove();
-        $overlay.addClass('invisible');
+        $overlayGallery.addClass('invisible');
     }
 });
 
@@ -249,7 +286,7 @@ $window.keydown(function() {
 $closeGallery.on('click', function(event) {
     event.preventDefault();
     $imageBig.remove().siblings('img').remove();
-    $overlay.addClass('invisible');
+    $overlayGallery.addClass('invisible');
 });
 
 /**
@@ -259,7 +296,7 @@ $closeGallery.on('click', function(event) {
 var $moreReviews = $('.reviews-controls-more');
 var $addReview = $('.reviews-controls-new');
 var $review = $('.review');
-var $reviewForm = $('.overlay-container');
+var $reviewOverlay = $('.overlay-container');
 var $closeForm = $('.review-form-close');
 
 $moreReviews.on('click', function(event) {
@@ -271,19 +308,18 @@ $moreReviews.on('click', function(event) {
 $addReview.on('click', function(event) {
     event.preventDefault();
 
-    $reviewForm.removeClass('invisible');
+    $reviewOverlay.removeClass('invisible');
 });
 
 $closeForm.on('click', function(event) {
     event.preventDefault();
 
-    $reviewForm.addClass('invisible');
+    $reviewOverlay.addClass('invisible');
 });
 
 $window.keydown(function() {
-    var esc = 27;
-    if (event.keyCode == esc && $reviewForm.not('invisible')) {
-        $reviewForm.addClass('invisible');
+    if (event.keyCode == keyCodes.esc && $reviewForm.not('invisible')) {
+        $reviewOverlay.addClass('invisible');
     }
 });
 
@@ -291,48 +327,46 @@ $window.keydown(function() {
  * Filter reviews
  */
 
-var $filterAll = $('label [for=reviews-all]');
-var $filterGood = $('label [for=reviews-good]');
-var $filterBad = $('label [for=reviews-bad]');
-var $filterRecent = $('label [for=reviews-recent]');
-var $filterPopular = $('label [for=reviews-popular]');
+var $filterAll = $('[for=reviews-all]');
+var $filterGood = $('[for=reviews-good]');
+var $filterBad = $('[for=reviews-bad]');
+var $filterRecent = $('[for=reviews-recent]');
+var $filterPopular = $('[for=reviews-popular]');
+var $filterAllRadio = $('#reviews-all');
+var $filterGoodRadio = $('#reviews-good');
+var $filterBadRadio = $('#reviews-bad');
+var $filterRecentRadio = $('#reviews-recent');
+var $filterPopularRadio = $('#reviews-popular');
 
 var $ratingBad = $('.review-rating[data-star=1], .review-rating[data-star=2], .review-rating[data-star=3]');
 var $ratingGood = $('.review-rating[data-star=4], .review-rating[data-star=5]');
 
-$filterGood.on('click', function(event) {
-    event.preventDefault();
-
-    $('#reviews-good').prop('checked', true);
+$filterGood.on('click', function() {
+    $filterGoodRadio.prop('checked', true);
     $ratingBad.closest($review).addClass('invisible');
     $ratingGood.closest($review).removeClass('invisible');
     $moreReviews.remove();
 });
 
-$filterBad.on('click', function(event) {
-    event.preventDefault();
-
-    $('#reviews-bad').prop('checked', true);
+$filterBad.on('click', function() {
+    $filterBadRadio.prop('checked', true);
     $ratingGood.closest($review).addClass('invisible');
     $ratingBad.closest($review).removeClass('invisible');
     $moreReviews.remove();
 });
 
-$filterAll.on('click', function(event) {
-    event.preventDefault();
-    $('#reviews-all').prop('checked', true);
+$filterAll.on('click', function() {
+    $filterAllRadio.prop('checked', true);
     $review.removeClass('invisible');
 });
 
-$filterRecent.on('click', function(event) {
-    event.preventDefault();
-    $('#reviews-recent').prop('checked', true);
+$filterRecent.on('click', function() {
+    $filterRecentRadio.prop('checked', true);
     $moreReviews.remove();
 });
 
-$filterPopular.on('click', function(event) {
-    event.preventDefault();
-    $('#reviews-popular').prop('checked', true);
+$filterPopular.on('click', function() {
+    $filterPopularRadio.prop('checked', true);
     $moreReviews.remove();
 });
 
