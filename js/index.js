@@ -45,6 +45,7 @@ $window.keydown(function(event) {
         event.preventDefault();
 
         $description.addClass('invisible');
+        $('.gollum').addClass('invisible');
 
         $wizard
             .css('bottom', 0)
@@ -114,8 +115,9 @@ $window.keydown(function(event) {
         setTimeout(function() {
             $('.slide-out-left').remove();
             $('.slide-out-right').remove();
-            $descriptionText.text('Ты убил кого-то случайным фаерболом! Гордись своей победой жестокий человек! GAME OVER');
+            $descriptionText.text('Ты убил кого-то шальным фаерболом! Гордись своей победой жестокий старикан!');
             $description.removeClass('invisible');
+            $('.gollum').removeClass('invisible');
         }, 5000);
     }
 
@@ -131,8 +133,6 @@ $window.keydown(function(event) {
         setTimeout(function() {
             $('.slide-out-right').remove();
             $('.slide-out-left').remove();
-            $descriptionText.text('Ты убил кого-то случайным фаерболом! Гордись своей победой жестокий человек! GAME OVER');
-            $description.removeClass('invisible');
         }, 5000);
     }
 
@@ -152,7 +152,7 @@ $window.keyup(function(event) {
 });
 
 /**
- *ScreenShots Gallery
+ * ScreenShots Gallery
  */
 
 // Элементы галереи

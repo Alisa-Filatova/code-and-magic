@@ -87,16 +87,35 @@ a:active {
   background-position-x: 0;
 }
 
-.fence {
-  background: url('../img/fence.gif') no-repeat;
-  bottom: 0;
-  height: 48px;
-  left: 50%;
+.tower {
+  background: url('../img/tower.png') no-repeat;
+  bottom: -11px;
+  left: 42%;
   margin-left: -400px;
   position: absolute;
-  width: 91px;
+  width: 162px;
+  height: 335px;
+  background-size: contain;
   z-index: 100;
 }
+
+.tower::after {
+  content: '';
+  width: 33px;
+  height: 30px;
+  background: url('../img/eye.png');
+  background-size: contain;
+  position: absolute;
+  top: 0;
+  left: 65px;
+  -webkit-animation: fade-out 1s;
+  animation: fade-out 1s;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
 
 .tree {
   background: url('../img/tree.gif') no-repeat;
@@ -151,6 +170,16 @@ a:active {
   top: 0;
   right: -81px;
   opacity: 0.9;
+}
+
+.gollum {
+  background: url('../img/gollum.png');
+  width: 80px;
+  height: 80px;
+  background-size: contain;
+  position: absolute;
+  top: 25px;
+  right: 84px;
 }
 
 .wizard {
@@ -732,6 +761,30 @@ input[type=radio]:checked + .review-mark__label {
   }
 }
 
+.fade-out {
+  -webkit-animation: fade-out 5s;
+  animation: fade-out 5s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@-webkit-keyframes fade-out {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 /*Вспомогательные классы*/
 
 .invisible {
