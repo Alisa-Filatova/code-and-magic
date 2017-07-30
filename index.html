@@ -12,7 +12,7 @@
       <header class="header">
 
           <div class="clouds"></div>
-          <span class="header-soon">Скоро</span>
+          <span class="header__soon">Скоро</span>
           <h1 class="header__title">Code and Magick</h1>
           <p class="header__description">
               Это игра, где главного героя, которым вам предстоит
@@ -192,7 +192,7 @@
                           class="review__author" 
                           alt="Димон Медведкин"
                       >
-                      <span class="review__rating" data-star="1"></span>
+                      <span class="review__rating" data-like="1"></span>
                       <p class="review__text">
                           Плохая игра: слишком сильно затягивает
                           и невозможно оторваться. Я потерял работу, учебу, девушку
@@ -200,8 +200,8 @@
                       </p>
                       <div class="review__quiz">
                           Полезный отзыв?
-                          <span class="review__quiz-answer review__quiz-answer_yes">Да</span>
-                          <span class="review__quiz-answer review__quiz-answer_no">Нет</span>
+                          <button class="review__quiz-answer review__quiz-answer_yes">Да</button>
+                          <button class="review__quiz-answer review__quiz-answer_no">Нет</button>
                       </div>
                   </article>
                   <article class="review">
@@ -210,7 +210,7 @@
                           class="review__author"
                           alt="Мила Йовович"
                       >
-                      <span class="review__rating" data-star="5"></span>
+                      <span class="review__rating" data-like="5"></span>
                       <p class="review__text">
                           Невероятно чумовая игра. Пендальф-синий — мой герой))))
                           Он такой милашка. Благодаря ему я наконец научилась
@@ -218,8 +218,8 @@
                       </p>
                       <div class="review__quiz">
                           Полезный отзыв?
-                          <span class="review__quiz-answer review__quiz-answer_yes">Да</span>
-                          <span class="review__quiz-answer review__quiz-answer_no">Нет</span>
+                          <button class="review__quiz-answer review__quiz-answer_yes">Да</button>
+                          <button class="review__quiz-answer review__quiz-answer_no">Нет</button>
                       </div>
                   </article>
                   <article class="review">
@@ -228,15 +228,15 @@
                           class="review__author"
                           alt="Ван Гоги"
                       >
-                      <span class="review__rating" data-star="4"></span>
+                      <span class="review__rating" data-like="4"></span>
                       <p class="review__text">
                           Игра очень неплохая. Тут есть и трюки, и взлёты, и падения.
                           Никогда не знаешь, что ждёт тебя впереди.
                       </p>
                       <div class="review__quiz">
                           Полезный отзыв?
-                          <span class="review__quiz-answer review__quiz-answer_yes">Да</span>
-                          <span class="review__quiz-answer review__quiz-answer_no">Нет</span>
+                          <button class="review__quiz-answer review__quiz-answer_yes">Да</button>
+                          <button class="review__quiz-answer review__quiz-answer_no">Нет</button>
                       </div>
                   </article>
                   <article class="review invisible">
@@ -245,12 +245,12 @@
                           class="review__author"
                           alt="Шварц"
                       >
-                      <span class="review__rating" data-star="5"></span>
+                      <span class="review__rating" data-like="5"></span>
                       <p class="review__text">Понравилось. Я вернусь!</p>
                       <div class="review__quiz">
                           Полезный отзыв?
-                          <span class="review__quiz-answer review__quiz-answer_yes">Да</span>
-                          <span class="review__quiz-answer review__quiz-answer_no">Нет</span>
+                          <button class="review__quiz-answer review__quiz-answer_yes">Да</button>
+                          <button class="review__quiz-answer review__quiz-answer_no">Нет</button>
                       </div>
                   </article>
                   <article class="review invisible">
@@ -259,7 +259,7 @@
                           class="review__author"
                           alt="Кончита"
                       >
-                      <span class="review__rating" data-star="3"></span>
+                      <span class="review__rating" data-like="3"></span>
                       <p class="review__text">
                           Игра не очень интересная. Нравится возможность
                           выбирать между героями, что есть
@@ -268,8 +268,8 @@
                       </p>
                       <div class="review__quiz">
                           Полезный отзыв?
-                          <span class="review__quiz-answer review__quiz-answer_yes">Да</span>
-                          <span class="review__quiz-answer review__quiz-answer_no">Нет</span>
+                          <button class="review__quiz-answer review__quiz-answer_yes">Да</button>
+                          <button class="review__quiz-answer review__quiz-answer_no">Нет</button>
                       </div>
                   </article>
                   <article class="review invisible">
@@ -278,12 +278,12 @@
                           class="review__author"
                           alt="Ксения Собчак"
                       >
-                      <span class="review__rating" data-star="1"></span>
+                      <span class="review__rating" data-like="1"></span>
                       <p class="review__text">Плохо, мне не нравится!</p>
                       <div class="review__quiz">
                           Полезный отзыв?
-                          <span class="review__quiz-answer review__quiz-answer_yes">Да</span>
-                          <span class="review__quiz-answer review__quiz-answer_no">Нет</span>
+                          <button class="review__quiz-answer review__quiz-answer_yes">Да</button>
+                          <button class="review__quiz-answer review__quiz-answer_no">Нет</button>
                       </div>
                   </article>
               </div>
@@ -312,7 +312,7 @@
                   target="_blank"
               >
                   2017 for HTML Academy
-              </a><br><br>
+              </a><br>
               <a
                   href="http://alicedesign.ru/"
                   target="_blank"
@@ -391,7 +391,7 @@
 
               <div class="review-form__controls">
                   <button
-                      class="review-form-control review__btn review__btn_submit"
+                      class="review-form-control review__btn review__btn_submit btn"
                       type="submit"
                   >
                       Добавить отзыв

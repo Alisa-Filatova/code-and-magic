@@ -103,40 +103,39 @@ $window.keydown(function(event) {
 
     // Запуск фаербола
 
-    if (event.keyCode == keyCodes.shift && descriptionIsInvisible && $wizard.not('.wizard-reversed') && galleryIsInvisible) {
+    if (event.keyCode == keyCodes.shift && $wizard.is('.wizard-reversed') && descriptionIsInvisible && galleryIsInvisible) {
         event.preventDefault();
 
         $fireball
             .clone()
-            .removeClass('fireball-reversed')
-            .addClass('slide-out-right')
+            .addClass('slide-out-left fireball-reversed')
             .prependTo($wizard);
-
-        $('.slide-out-left').remove();
-
-        setTimeout(function() {
-            $('.slide-out-right').remove();
-            //$descriptionText.text('Ты убил кого-то случайным фаерболом! Гордись своей победой жестокий человек! GAME OVER');
-            //$description.removeClass('invisible');
-        }, 5000);
-    }
-
-    if (event.keyCode == keyCodes.shift && descriptionIsInvisible && $wizard.hasClass('wizard-reversed') && galleryIsInvisible) {
-        event.preventDefault();
-
-        $fireball
-            .clone()
-            .addClass('slide-out-left')
-            .prependTo($wizard);
-
-        $('.slide-out-right').remove();
 
         setTimeout(function() {
             $('.slide-out-left').remove();
-            //$descriptionText.text('Ты убил кого-то случайным фаерболом! Гордись своей победой жестокий человек! GAME OVER');
-            //$description.removeClass('invisible');
+            $('.slide-out-right').remove();
+            $descriptionText.text('Ты убил кого-то случайным фаерболом! Гордись своей победой жестокий человек! GAME OVER');
+            $description.removeClass('invisible');
         }, 5000);
     }
+
+    if (event.keyCode == keyCodes.shift && descriptionIsInvisible && $wizard.is(':not(.wizard-reversed)') && galleryIsInvisible && $fireball.not('.fireball-reversed') ) {
+        event.preventDefault();
+
+        $fireball
+            .clone()
+            .removeClass('fireball-reversed slide-out-left')
+            .addClass('slide-out-right')
+            .prependTo($wizard);
+
+        setTimeout(function() {
+            $('.slide-out-right').remove();
+            $('.slide-out-left').remove();
+            $descriptionText.text('Ты убил кого-то случайным фаерболом! Гордись своей победой жестокий человек! GAME OVER');
+            $description.removeClass('invisible');
+        }, 5000);
+    }
+
 });
 
 $window.keyup(function(event) {
@@ -341,8 +340,8 @@ var $filterBadRadio = $('#reviews-bad');
 var $filterRecentRadio = $('#reviews-recent');
 var $filterPopularRadio = $('#reviews-popular');
 
-var $ratingBad = $('.review__rating[data-star=1], .review__rating[data-star=2], .review__rating[data-star=3]');
-var $ratingGood = $('.review__rating[data-star=4], .review__rating[data-star=5]');
+var $ratingBad = $('.review__rating[data-like=1], .review__rating[data-like=2], .review__rating[data-like=3]');
+var $ratingGood = $('.review__rating[data-like=4], .review__rating[data-like=5]');
 
 $filterGood.on('click', function() {
     $filterGoodRadio.prop('checked', true);
