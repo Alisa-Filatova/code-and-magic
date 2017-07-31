@@ -26,12 +26,20 @@
               <div class="wizard float">
                   <div class="fireball"></div>
               </div>
-              <div class="gollum invisible"></div>
               <div class="demo__description">
                   <p class="demo__description_text">
                       Я перемещаюсь по нажатию на стрелки
                       и стреляю фаерболом с помощью shift.
                       Скорее жми на <b>пробел</b>, и игра начнется...
+                  </p>
+              </div>
+
+              <div class="demo__game-over invisible">
+                  <div class="gollum"></div>
+                  <p class="demo__description_text">
+                      Ты убил кого-то шальным фаерболом!
+                      Гордись своей победой жестокий старикан!<br>
+                      <small>Нажми <b>CTRL+R/CMD+R</b> чтобы начать заново.</small>
                   </p>
               </div>
 
@@ -186,7 +194,7 @@
               </form>
 
               <div class="reviews-list">
-                  <article class="review">
+                  <article class="review new">
                       <img 
                           src="img/user-1.jpg" 
                           class="review__author" 
@@ -204,7 +212,7 @@
                           <button class="review__quiz-answer review__quiz-answer_no">Нет</button>
                       </div>
                   </article>
-                  <article class="review">
+                  <article class="review new">
                       <img
                           src="img/user-2.png"
                           class="review__author"
@@ -274,7 +282,7 @@
                   </article>
                   <article class="review invisible">
                       <img
-                          src="img/user-4.jpg"
+                          src="img/user-8.jpg"
                           class="review__author"
                           alt="Ксения Собчак"
                       >
@@ -324,7 +332,7 @@
       </footer>
 
       <div class="overlay-review-form invisible">
-          <form class="review-form" action="index.html" method="post">
+          <form class="review-form" action="" method="post">
               <h2 class="review-form__title">Оставить отзыв</h2>
               <button type="button" class="review-form__btn_close">&times;</button>
 
@@ -392,26 +400,10 @@
               <div class="review-form__controls">
                   <button
                       class="review-form-control review__btn review__btn_submit btn"
-                      type="submit"
+                      type="button"
                   >
                       Добавить отзыв
                   </button>
-
-                  <div class="review-form-control review__fields">
-                      Осталось заполнить:<br>
-                      <label
-                          for="review-name"
-                          class="review__fields_label review__fields_name"
-                      >
-                          имя
-                      </label>
-                      <label
-                          for="review-text"
-                          class="review__fields_label review__fields_text"
-                      >
-                          отзыв
-                      </label>
-                  </div>
               </div>
           </form>
       </div>

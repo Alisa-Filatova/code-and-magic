@@ -6,7 +6,7 @@ var $window = $(window);
 var $wizard = $('.wizard');
 var $clouds = $('.clouds');
 var $description = $('.demo__description');
-var $descriptionText = $('.demo__description_text');
+var $gameOver = $('.demo__game-over');
 var $fireball = $('.fireball');
 
 var $demoWidth = $('.demo').width();
@@ -40,21 +40,18 @@ $window.keydown(function(event) {
 
     var descriptionIsInvisible = $description.hasClass('invisible');
     var galleryIsInvisible = $('.overlay-gallery').hasClass('invisible');
+    var gameOverIsInvisible = $gameOver.hasClass('invisible');
 
     if (event.keyCode == keyCodes.spaceBar) {
         event.preventDefault();
 
         $description.addClass('invisible');
-        $('.gollum').addClass('invisible');
-
-        $wizard
-            .css('bottom', 0)
-            .removeClass('float');
+        $wizard.css('bottom', 1 + 'px');
     }
 
     // Передвижения мага
 
-    if (event.keyCode == keyCodes.right && descriptionIsInvisible && galleryIsInvisible) {
+    if (event.keyCode == keyCodes.right && descriptionIsInvisible && galleryIsInvisible && gameOverIsInvisible) {
         event.preventDefault();
 
         if ($positionLeft > $demoWidth) {
@@ -70,7 +67,7 @@ $window.keydown(function(event) {
         $fireball.removeClass('fireball-reversed');
     }
 
-    if (event.keyCode == keyCodes.left && descriptionIsInvisible && galleryIsInvisible) {
+    if (event.keyCode == keyCodes.left && descriptionIsInvisible && galleryIsInvisible && gameOverIsInvisible) {
         event.preventDefault();
 
         if ($positionLeft < 0) {
@@ -86,7 +83,7 @@ $window.keydown(function(event) {
         $fireball.addClass('fireball-reversed');
     }
 
-    if (event.keyCode == keyCodes.top && descriptionIsInvisible && galleryIsInvisible) {
+    if (event.keyCode == keyCodes.top && descriptionIsInvisible && galleryIsInvisible && gameOverIsInvisible) {
         event.preventDefault();
         $wizard.css({
             bottom: demoHeight,
@@ -94,7 +91,7 @@ $window.keydown(function(event) {
         });
     }
 
-    if (event.keyCode == keyCodes.bottom && descriptionIsInvisible && galleryIsInvisible) {
+    if (event.keyCode == keyCodes.bottom && descriptionIsInvisible && galleryIsInvisible && gameOverIsInvisible) {
         event.preventDefault();
         $wizard.css({
             bottom: 0,
@@ -104,7 +101,7 @@ $window.keydown(function(event) {
 
     // Запуск фаербола
 
-    if (event.keyCode == keyCodes.shift && $wizard.is('.wizard-reversed') && descriptionIsInvisible && galleryIsInvisible) {
+    if (event.keyCode == keyCodes.shift && $wizard.is('.wizard-reversed') && descriptionIsInvisible && galleryIsInvisible && gameOverIsInvisible) {
         event.preventDefault();
 
         $fireball
@@ -112,16 +109,14 @@ $window.keydown(function(event) {
             .addClass('slide-out-left fireball-reversed')
             .prependTo($wizard);
 
-        setTimeout(function() {
+        setTimeout(function () {
             $('.slide-out-left').remove();
             $('.slide-out-right').remove();
-            $descriptionText.text('Ты убил кого-то шальным фаерболом! Гордись своей победой жестокий старикан!');
-            $description.removeClass('invisible');
-            $('.gollum').removeClass('invisible');
-        }, 5000);
+            $gameOver.removeClass('invisible')
+        }, 6000);
     }
 
-    if (event.keyCode == keyCodes.shift && descriptionIsInvisible && $wizard.is(':not(.wizard-reversed)') && galleryIsInvisible && $fireball.not('.fireball-reversed') ) {
+    if (event.keyCode == keyCodes.shift && descriptionIsInvisible && $wizard.is(':not(.wizard-reversed)') && galleryIsInvisible && gameOverIsInvisible ) {
         event.preventDefault();
 
         $fireball
@@ -129,13 +124,7 @@ $window.keydown(function(event) {
             .removeClass('fireball-reversed slide-out-left')
             .addClass('slide-out-right')
             .prependTo($wizard);
-
-        setTimeout(function() {
-            $('.slide-out-right').remove();
-            $('.slide-out-left').remove();
-        }, 5000);
     }
-
 });
 
 $window.keyup(function(event) {
@@ -297,12 +286,14 @@ $closeGallery.on('click', function(event) {
 
 var $moreReviews = $('.reviews__btn_more');
 var $addReview = $('.reviews__btn_add');
-var $review = $('.review');
+var $reviewsList = $('.reviews-list');
 var $reviewOverlay = $('.overlay-review-form');
 var $closeForm = $('.review-form__btn_close');
 
 $moreReviews.on('click', function(event) {
+    var $review = $('.review');
     event.preventDefault();
+
     $(this).remove();
     $review.filter('.invisible').removeClass('invisible');
 });
@@ -319,10 +310,53 @@ $closeForm.on('click', function(event) {
     $reviewOverlay.addClass('invisible');
 });
 
+
 $window.keydown(function() {
     if (event.keyCode == keyCodes.esc && $reviewOverlay.not('invisible')) {
         $reviewOverlay.addClass('invisible');
     }
+});
+
+/**
+ * Review Form
+ */
+
+var $reviewSubmitBtn = $('.review__btn_submit');
+
+
+$reviewSubmitBtn.on('click', function() {
+    var $ratingValue = $('.review-form__group_mark input[type=radio]:checked');
+    var $nameValue = $('#review-name');
+    var $reviewText = $('#review-text');
+
+    var $reviewFirst = $('.review:first');
+
+    $reviewFirst.clone().prependTo($reviewsList);
+
+    var $reviewRatingFirst = $('.review__rating:first');
+    var $reviewAuthorFirst = $('.review__author:first');
+    var $reviewTextFirst = $('.review__text:first');
+    var $answerYes = $('.review__quiz-answer_yes:first');
+    var $answerNo = $('.review__quiz-answer_no:first');
+
+    $reviewTextFirst.text($reviewText.val());
+    $reviewAuthorFirst.attr('alt', $nameValue.val());
+    $reviewRatingFirst.attr('data-like', $ratingValue.val());
+    $answerYes.addClass('new');
+    $answerNo.addClass('new');
+
+
+    if($reviewRatingFirst.attr('data-like') <= 3) {
+        $reviewAuthorFirst.attr('src', 'img/new-review-bad.jpg');
+    }
+
+    if($reviewRatingFirst.attr('data-like') > 3) {
+        $reviewAuthorFirst.attr('src', 'img/new-review-good.jpg');
+    }
+
+
+    $reviewOverlay.addClass('invisible');
+
 });
 
 /**
@@ -340,41 +374,64 @@ var $filterBadRadio = $('#reviews-bad');
 var $filterRecentRadio = $('#reviews-recent');
 var $filterPopularRadio = $('#reviews-popular');
 
-var $ratingBad = $('.review__rating[data-like=1], .review__rating[data-like=2], .review__rating[data-like=3]');
-var $ratingGood = $('.review__rating[data-like=4], .review__rating[data-like=5]');
-
 $filterGood.on('click', function() {
+    var $ratingBad = $('.review__rating[data-like=1], .review__rating[data-like=2], .review__rating[data-like=3]');
+    var $ratingGood = $('.review__rating[data-like=4], .review__rating[data-like=5]');
+
     $filterGoodRadio.prop('checked', true);
-    $ratingBad.closest($review).addClass('invisible');
-    $ratingGood.closest($review).removeClass('invisible');
+
+    var $review = $('.review');
+
+    $reviewsList.find($ratingBad).closest($review).addClass('invisible');
+    $reviewsList.find($ratingGood).closest($review).removeClass('invisible');
     $moreReviews.remove();
 });
 
 $filterBad.on('click', function() {
+    var $ratingBad = $('.review__rating[data-like=1], .review__rating[data-like=2], .review__rating[data-like=3]');
+    var $ratingGood = $('.review__rating[data-like=4], .review__rating[data-like=5]');
+
     $filterBadRadio.prop('checked', true);
-    $ratingGood.closest($review).addClass('invisible');
-    $ratingBad.closest($review).removeClass('invisible');
+
+    var $review = $('.review');
+
+    $reviewsList.find($ratingGood).closest($review).addClass('invisible');
+    $reviewsList.find($ratingBad).closest($review).removeClass('invisible');
     $moreReviews.remove();
 });
 
 $filterAll.on('click', function() {
     $filterAllRadio.prop('checked', true);
-    $review.removeClass('invisible');
+    $reviewsList.find($('.review')).removeClass('invisible');
 });
 
 $filterRecent.on('click', function() {
     $filterRecentRadio.prop('checked', true);
     $moreReviews.remove();
+
+    $reviewsList.find($('.review')).addClass('invisible');
+    $reviewsList.find($('.new')).removeClass('invisible');
 });
 
 $filterPopular.on('click', function() {
     $filterPopularRadio.prop('checked', true);
     $moreReviews.remove();
+
+    $reviewsList.find($('.review')).addClass('invisible');
+    $reviewsList.find($('.popular')).removeClass('invisible');
 });
 
 
 
 
+$reviewsList.on('click', '.review__quiz-answer', function() {
+    var $this = $(this);
 
+    if ($this.hasClass('review__quiz-answer_yes')) {
+        $this.addClass('review__quiz-answer_check');
+        $this.closest('.review').addClass('popular');
+    } else {
+        $this.addClass('review__quiz-answer_check');
+    }
 
-
+});

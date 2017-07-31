@@ -31,12 +31,12 @@ body {
 }
 
 body {
-  background: url('../img/rock5.jpg') repeat, #532a11;
-  color: #fff;
   font-family: 'PT Mono', Lucida Console, Monaco, monospace;
   font-size: 20px;
+  color: #fff;
   margin: 0 auto;
   min-width: 1024px;
+  background: url('../img/rock5.jpg') repeat, #4c3428;
 }
 
 h1,
@@ -54,23 +54,33 @@ a:active {
 }
 
 .btn {
+  font-family: 'Press Start 2P', 'PT Mono', Lucida Console, Monaco, monospace;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 36px;
   background: transparent;
   margin-top: 40px;
   cursor: pointer;
   color: #fff;
   border: 1px solid #fff;
-  font-size: 14px;
-  line-height: 36px;
   padding: 10px;
-  font-weight: bold;
   border-radius: 6px;
-  font-family: 'Press Start 2P', 'PT Mono', Lucida Console, Monaco, monospace;
+  transition: 0.2s;
+  opacity: 0.8;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+.btn:active {
+  transform: scale(0.97);
 }
 
 .header {
   background: #2b5cfc;
   background: linear-gradient(180deg, #0000ff, #94c6fd);
-  border-bottom: solid 8px #1cb34d;
+  border-bottom: solid 8px #4c3428;
   padding-top: 80px;
   position: relative;
   text-align: center;
@@ -89,7 +99,7 @@ a:active {
 
 .tower {
   background: url('../img/tower.png') no-repeat;
-  bottom: -11px;
+  bottom: -13px;
   left: 42%;
   margin-left: -400px;
   position: absolute;
@@ -115,7 +125,6 @@ a:active {
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
-
 
 .tree {
   background: url('../img/tree.gif') no-repeat;
@@ -178,12 +187,12 @@ a:active {
   height: 80px;
   background-size: contain;
   position: absolute;
-  top: 25px;
-  right: 84px;
+  top: -73px;
+  right: -6px;
 }
 
 .wizard {
-  background: url('../img/wizard.gif');
+  background: url('../img/wizard.gif') no-repeat;
   width: 61px;
   height: 84px;
   position: absolute;
@@ -195,7 +204,7 @@ a:active {
 }
 
 .wizard-reversed {
-  background: url('../img/wizard-reversed.gif');
+  background: url('../img/wizard-reversed.gif') no-repeat;
 }
 
 .fireball {
@@ -217,7 +226,8 @@ a:active {
   left: -4%;
 }
 
-.demo__description {
+.demo__description,
+.demo__game-over {
   background: #fff;
   position: absolute;
   right: 14%;
@@ -441,6 +451,11 @@ input[type=radio]:checked + .reviews-filter__item {
   margin: 0 5px;
   text-decoration: underline;
   vertical-align: middle;
+}
+
+.review__quiz-answer_check {
+  color: #ffff00;
+  outline: none;
 }
 
 .review__quiz-answer:active {
