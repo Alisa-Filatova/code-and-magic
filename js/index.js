@@ -322,10 +322,7 @@ $window.keydown(function() {
  * Review Form
  */
 
-var $reviewSubmitBtn = $('.review__btn_submit');
-
-
-$reviewSubmitBtn.on('click', function(event) {
+$('.review-form').on('submit', function(event) {
     event.preventDefault();
 
     var $ratingValue = $('.review-form__group_mark input[type=radio]:checked');
