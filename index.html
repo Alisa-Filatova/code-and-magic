@@ -2,10 +2,13 @@
 <html lang="ru">
   <head>
       <meta charset="utf-8">
+
+      <title>Code and Magick</title>
+
       <link href="https://fonts.googleapis.com/css?family=PT+Mono&amp;subset=latin,cyrillic" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&amp;subset=cyrillic" rel="stylesheet">
+      <link rel="stylesheet" href="css/normalize.css">
       <link rel="stylesheet" href="css/index.css">
-      <title>Code and Magick</title>
   </head>
   <body>
 
@@ -303,34 +306,6 @@
           </section>
       </main>
 
-      <footer class="footer">
-          <a href="http://htmlacademy.ru" target="_blank">
-              <img
-                  src="img/htmlacademy-logo.png"
-                  alt="HTML Academy"
-                  width="134"
-                  height="37"
-                  class="logo-academy"
-              >
-          </a>
-          <p>
-              <a
-                  class="footer__link"
-                  href="http://htmlacademy.ru"
-                  target="_blank"
-              >
-                  2017 for HTML Academy
-              </a><br>
-              <a
-                  href="http://alicedesign.ru/"
-                  target="_blank"
-                  class="footer__link"
-              >
-                  by Alisa Filatova
-              </a>
-          </p>
-      </footer>
-
       <div class="overlay-review-form invisible">
           <form class="review-form" action="" method="get">
               <h2 class="review-form__title">Оставить отзыв</h2>
@@ -398,13 +373,11 @@
                       required></textarea>
               </fieldset>
 
-              <div class="review-form__controls">
-                  <input
-                      class="review-form-control review__btn review__btn_submit btn"
-                      type="submit"
-                      value="Добавить отзыв"
-                  >
-              </div>
+              <input
+                  class="review-form-control review__btn review__btn_submit btn"
+                  type="submit"
+                  value="Добавить отзыв"
+              >
           </form>
       </div>
 
@@ -425,8 +398,36 @@
                   </div>
               </div>
               <div class="overlay-gallery-control overlay-gallery-control_right"></div>
-           </div>
+          </div>
       </div>
+
+      <footer class="footer">
+          <a href="http://htmlacademy.ru" target="_blank">
+              <img
+                  src="img/htmlacademy-logo.png"
+                  alt="HTML Academy"
+                  width="134"
+                  height="37"
+                  class="logo-academy"
+              >
+          </a>
+          <p>
+              <a
+                  class="footer__link"
+                  href="http://alicedesign.ru/"
+                  target="_blank"
+              >
+                  2017 разработано: Alisa Filatova
+              </a><br>
+              <a
+                  href="http://htmlacademy.ru"
+                  target="_blank"
+                  class="footer__link"
+              >
+                  для HTML-Academy
+              </a>
+          </p>
+      </footer>
 
       <script src="js/jquery-3.2.1.min.js"></script>
       <script src="js/index.js"></script>
