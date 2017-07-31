@@ -393,7 +393,9 @@ $filterGood.on('click', function() {
         .find($ratingGood)
         .closest($review)
         .removeClass('invisible');
-    $moreReviews.remove();
+
+    $moreReviews.hide();
+    $addReview.hide();
 });
 
 $filterBad.on('click', function() {
@@ -412,19 +414,23 @@ $filterBad.on('click', function() {
         .find($ratingBad)
         .closest($review)
         .removeClass('invisible');
-    $moreReviews.remove();
+
+    $moreReviews.hide();
+    $addReview.hide();
 });
 
 $filterAll.on('click', function() {
     $filterAllRadio.prop('checked', true);
+
     $reviewsList
         .find($('.review'))
         .removeClass('invisible');
+
+    $addReview.show();
 });
 
 $filterRecent.on('click', function() {
     $filterRecentRadio.prop('checked', true);
-    $moreReviews.remove();
 
     $reviewsList
         .find($('.review'))
@@ -432,11 +438,13 @@ $filterRecent.on('click', function() {
     $reviewsList
         .find($('.new'))
         .removeClass('invisible');
+
+    $moreReviews.hide();
+    $addReview.hide();
 });
 
 $filterPopular.on('click', function() {
     $filterPopularRadio.prop('checked', true);
-    $moreReviews.remove();
 
     $reviewsList
         .find($('.review'))
@@ -444,6 +452,9 @@ $filterPopular.on('click', function() {
     $reviewsList
         .find($('.popular'))
         .removeClass('invisible');
+
+    $moreReviews.hide();
+    $addReview.hide();
 });
 
 // Кнопки полезный отзыв (да/нет)
