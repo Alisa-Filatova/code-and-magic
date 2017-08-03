@@ -28,6 +28,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 body {
@@ -36,7 +37,7 @@ body {
   color: #fff;
   margin: 0 auto;
   min-width: 1024px;
-  background: url('../img/rock5.jpg') repeat, #4c3428;
+  background: url('../img/ground-background.jpg') repeat, #4c3428;
 }
 
 h1,
@@ -673,7 +674,6 @@ input[type=radio]:checked + .review-mark__label {
 
 /*Animation*/
 
-
 .float {
   -webkit-animation: float 1.6s;
   animation: float 1.6s;
@@ -703,6 +703,7 @@ input[type=radio]:checked + .review-mark__label {
   animation: rotate 1s;
   -webkit-animation-timing-function: ease-in;
   animation-timing-function: ease-in;
+  -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
 }
 
@@ -729,6 +730,7 @@ input[type=radio]:checked + .review-mark__label {
   animation: slide-out-right 3s;
   -webkit-animation-timing-function: ease;
   animation-timing-function: ease;
+  -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
 
@@ -755,6 +757,7 @@ input[type=radio]:checked + .review-mark__label {
   animation: slide-out-left 3s;
   -webkit-animation-timing-function: ease;
   animation-timing-function: ease;
+  -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
 
@@ -781,9 +784,12 @@ input[type=radio]:checked + .review-mark__label {
   animation: fade-out 5s;
   -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
   animation-direction: alternate;
 }
+
 @-webkit-keyframes fade-out {
   0% {
     opacity: 0.3;
@@ -792,6 +798,7 @@ input[type=radio]:checked + .review-mark__label {
     opacity: 1;
   }
 }
+
 @keyframes fade-out {
   0% {
     opacity: 0.3;
@@ -800,6 +807,8 @@ input[type=radio]:checked + .review-mark__label {
     opacity: 1;
   }
 }
+
+
 /*Вспомогательные классы*/
 
 .invisible {

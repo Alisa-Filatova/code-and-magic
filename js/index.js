@@ -290,8 +290,9 @@ var $reviewOverlay = $('.overlay-review-form');
 var $closeForm = $('.review-form__btn_close');
 
 $moreReviews.on('click', function(event) {
-    var $review = $('.review');
     event.preventDefault();
+
+    var $review = $('.review');
 
     $(this).remove();
     $review
