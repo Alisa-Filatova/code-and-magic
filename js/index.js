@@ -50,7 +50,10 @@ $window.keydown(function(event) {
 
     // Передвижения мага
 
-    if (event.keyCode == keyCodes.right && descriptionIsInvisible && galleryIsInvisible && gameOverIsInvisible) {
+    if (event.keyCode == keyCodes.right 
+        && descriptionIsInvisible 
+        && galleryIsInvisible 
+        && gameOverIsInvisible) {
         event.preventDefault();
 
         if ($positionLeft > $demoWidth) {
@@ -66,7 +69,10 @@ $window.keydown(function(event) {
         $fireball.removeClass('fireball-reversed');
     }
 
-    if (event.keyCode == keyCodes.left && descriptionIsInvisible && galleryIsInvisible && gameOverIsInvisible) {
+    if (event.keyCode == keyCodes.left 
+        && descriptionIsInvisible 
+        && galleryIsInvisible 
+        && gameOverIsInvisible) {
         event.preventDefault();
 
         if ($positionLeft < 0) {
@@ -82,16 +88,24 @@ $window.keydown(function(event) {
         $fireball.addClass('fireball-reversed');
     }
 
-    if (event.keyCode == keyCodes.top && descriptionIsInvisible && galleryIsInvisible && gameOverIsInvisible) {
+    if (event.keyCode == keyCodes.top 
+        && descriptionIsInvisible 
+        && galleryIsInvisible 
+        && gameOverIsInvisible) {
         event.preventDefault();
+        
         $wizard.css({
             bottom: demoHeight,
             transition: 0.3 + 's'
         });
     }
 
-    if (event.keyCode == keyCodes.bottom && descriptionIsInvisible && galleryIsInvisible && gameOverIsInvisible) {
+    if (event.keyCode == keyCodes.bottom 
+        && descriptionIsInvisible 
+        && galleryIsInvisible 
+        && gameOverIsInvisible) {
         event.preventDefault();
+        
         $wizard.css({
             bottom: 0,
             transition: 0.3 + 's'
@@ -100,7 +114,11 @@ $window.keydown(function(event) {
 
     // Запуск фаербола
 
-    if (event.keyCode == keyCodes.shift && $wizard.is('.wizard-reversed') && descriptionIsInvisible && galleryIsInvisible && gameOverIsInvisible) {
+    if (event.keyCode == keyCodes.shift 
+        && $wizard.is('.wizard-reversed') 
+        && descriptionIsInvisible 
+        && galleryIsInvisible 
+        && gameOverIsInvisible) {
         event.preventDefault();
 
         $fireball
@@ -115,7 +133,11 @@ $window.keydown(function(event) {
         }, 6000);
     }
 
-    if (event.keyCode == keyCodes.shift && descriptionIsInvisible && $wizard.is(':not(.wizard-reversed)') && galleryIsInvisible && gameOverIsInvisible ) {
+    if (event.keyCode == keyCodes.shift 
+        && descriptionIsInvisible 
+        && $wizard.is(':not(.wizard-reversed)') 
+        && galleryIsInvisible 
+        && gameOverIsInvisible ) {
         event.preventDefault();
 
         $fireball
@@ -130,8 +152,11 @@ $window.keyup(function(event) {
     var descriptionIsInvisible = $description.hasClass('invisible');
     var galleryIsInvisible = $('.overlay-gallery').hasClass('invisible');
 
-    if (event.keyCode == keyCodes.top && descriptionIsInvisible && galleryIsInvisible) {
+    if (event.keyCode == keyCodes.top 
+        && descriptionIsInvisible 
+        && galleryIsInvisible) {
         event.preventDefault();
+        
         $wizard.css({
             bottom: 0,
             transition: 1 +'s ease-in'
