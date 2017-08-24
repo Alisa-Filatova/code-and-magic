@@ -14,7 +14,7 @@
     </head>
     <body>
         <header class="header">
-            <svg style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6286">
+            <svg style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 86">
                 <g id="wizard"><g id="wizard-coat">
                 <polygon points="19 67 19 59 14 59 14 82 9 82 9 86 23 86 23 67 19 67"/>
                 <polygon points="19 59 19 67 23 67 23 86 48 86 48 54 19 54 19 59"/>
@@ -70,7 +70,7 @@
             <div class="tower"></div>
             <div class="tree"></div>
         </div>
-        <div class="setup-open">
+        <div class="setup-open" tabindex="0">
             <img src="./img/user-1.jpg" class="setup-open-icon">
         </div>
     </header>
@@ -475,10 +475,12 @@
                             name="username" 
                             class="setup-user-name" 
                             value="Синий Пендальф"
+                            maxlength="25"
+                            required
                         >
                     </label>
                 </div>
-                    <span class="setup-close">&times;</span>
+                <span class="setup-close">&times;</span>
             </div>
     
             <div class="setup-artifacts-shop">
@@ -574,6 +576,7 @@
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/setup.js"></script>
 
   </body>
 </html>
