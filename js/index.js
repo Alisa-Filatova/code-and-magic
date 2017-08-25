@@ -1,4 +1,4 @@
-/**
+            /**
  * Created by Alisa on 27.07.17.
  */
 
@@ -9,7 +9,7 @@ var $description = $('.demo__description');
 var $gameOver = $('.demo__game-over');
 var $fireball = $('.fireball');
 
-var $demoWidth = $('.demo').width();
+var demoWidth = $('.demo').width();
 var demoHeight = 210 + 'px';
 var steps = 100;
 
@@ -35,15 +35,14 @@ $window.scroll(function(event) {
  * DEMO
  */
 $window.keydown(function(event) {
-    var $positionLeft = $wizard.position().left;
-
+    var positionLeft = $wizard.position().left;
     var descriptionIsInvisible = $description.hasClass('invisible');
     var galleryIsInvisible = $('.overlay-gallery').hasClass('invisible');
     var gameOverIsInvisible = $gameOver.hasClass('invisible');
+    var setupWindowIsInvisible = $('.setup').hasClass('hidden');
 
-    if (event.keyCode == keyCodes.spaceBar) {
+    if (event.keyCode == keyCodes.spaceBar && setupWindowIsInvisible) {
         event.preventDefault();
-
         $description.addClass('invisible');
         $wizard.css('bottom', 1 + 'px');
     }
@@ -53,16 +52,17 @@ $window.keydown(function(event) {
     if (event.keyCode == keyCodes.right 
         && descriptionIsInvisible 
         && galleryIsInvisible 
-        && gameOverIsInvisible) {
+        && gameOverIsInvisible
+        && setupWindowIsInvisible) {
         event.preventDefault();
 
-        if ($positionLeft > $demoWidth) {
+        if (positionLeft > demoWidth) {
             return;
         }
 
         $wizard.removeClass('wizard-reversed')
             .css({
-                left: $positionLeft + steps + 'px',
+                left: positionLeft + steps + 'px',
                 transition: 0.3 + 's'
             });
 
@@ -72,16 +72,17 @@ $window.keydown(function(event) {
     if (event.keyCode == keyCodes.left 
         && descriptionIsInvisible 
         && galleryIsInvisible 
-        && gameOverIsInvisible) {
+        && gameOverIsInvisible
+        && setupWindowIsInvisible) {
         event.preventDefault();
 
-        if ($positionLeft < 0) {
+        if (positionLeft < 0) {
             return;
         }
 
         $wizard.addClass('wizard-reversed')
             .css({
-                left: $positionLeft - steps + 'px',
+                left: positionLeft - steps + 'px',
                 transition: 0.3 + 's'
             });
 
@@ -91,7 +92,8 @@ $window.keydown(function(event) {
     if (event.keyCode == keyCodes.top 
         && descriptionIsInvisible 
         && galleryIsInvisible 
-        && gameOverIsInvisible) {
+        && gameOverIsInvisible
+        && setupWindowIsInvisible) {
         event.preventDefault();
         
         $wizard.css({
@@ -103,7 +105,8 @@ $window.keydown(function(event) {
     if (event.keyCode == keyCodes.bottom 
         && descriptionIsInvisible 
         && galleryIsInvisible 
-        && gameOverIsInvisible) {
+        && gameOverIsInvisible
+        && setupWindowIsInvisible) {
         event.preventDefault();
         
         $wizard.css({
@@ -118,7 +121,8 @@ $window.keydown(function(event) {
         && $wizard.is('.wizard-reversed') 
         && descriptionIsInvisible 
         && galleryIsInvisible 
-        && gameOverIsInvisible) {
+        && gameOverIsInvisible
+        && setupWindowIsInvisible) {
         event.preventDefault();
 
         $fireball
@@ -137,7 +141,8 @@ $window.keydown(function(event) {
         && descriptionIsInvisible 
         && $wizard.is(':not(.wizard-reversed)') 
         && galleryIsInvisible 
-        && gameOverIsInvisible ) {
+        && gameOverIsInvisible
+        && setupWindowIsInvisible) {
         event.preventDefault();
 
         $fireball
@@ -185,13 +190,13 @@ var $moreScreenShots = $('.photogallery__btn');
 
 // Функция отображения кол-ва скриншотов
 
-var $ImageCount = $imageSmall.clone();
+var $imageCount = $imageSmall.clone();
 var currentStep = 1;
 var $currentBox = $('.preview-number_current');
 var $totalBox = $('.preview-number_total');
 
 function totalImages() {
-    $totalBox.text($ImageCount.length);
+    $totalBox.text($imageCount.length);
 }
 
 // Кнопка "Больше скриншотов"
@@ -487,7 +492,7 @@ $filterAll.on('click', function() {
    $filterAllRadio.prop('checked', true);
 
    $reviewsList
-       .find($('.review'))
+       .find('.review')
        .removeClass('invisible');
 
    $addReview.show();
@@ -500,7 +505,7 @@ $filterRecent.on('click', function() {
        .find($('.review'))
        .addClass('invisible');
    $reviewsList
-       .find($('.new'))
+       .find('.new')
        .removeClass('invisible');
 
    $moreReviews.hide();
@@ -511,10 +516,10 @@ $filterPopular.on('click', function() {
    $filterPopularRadio.prop('checked', true);
 
    $reviewsList
-       .find($('.review'))
+       .find('.review')
        .addClass('invisible');
    $reviewsList
-       .find($('.popular'))
+       .find('.popular')
        .removeClass('invisible');
 
    $moreReviews.hide();
