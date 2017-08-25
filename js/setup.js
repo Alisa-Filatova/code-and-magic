@@ -144,14 +144,14 @@ setupOpen.addEventListener('keydown', function(event) {
     }
 });
 
-setupClose.addEventListener('click', function() {
+setupClose.addEventListener('click', function(event) {
     setupWindow.classList.add('hidden');
     setupSimilar.classList.add('hidden');
     overlaySetup.classList.add('invisible');
 });
 
 document.addEventListener('keydown', function(event) {
-    event.preventDefault;
+     event.preventDefault;
     if (event.keyCode === KEY_CODES.ESC) {
         setupWindow.classList.add('hidden');
         setupSimilar.classList.add('hidden');
