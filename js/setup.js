@@ -151,6 +151,7 @@ setupClose.addEventListener('click', function() {
 });
 
 document.addEventListener('keydown', function(event) {
+    event.preventDefault;
     if (event.keyCode === KEY_CODES.ESC) {
         setupWindow.classList.add('hidden');
         setupSimilar.classList.add('hidden');
