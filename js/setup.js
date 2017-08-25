@@ -119,7 +119,7 @@ function renderRandomCharacters() {
     var fragment = document.createDocumentFragment();
     
     for (var index = 0; index < characters.length; index++) {
-      fragment.appendChild(renderCharacter(characters[index]));
+        fragment.appendChild(renderCharacter(characters[index]));
     }
     similarListElement.appendChild(fragment);
 };
