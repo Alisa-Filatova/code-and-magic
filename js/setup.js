@@ -43,17 +43,26 @@ var EYES_COLORS = [
     'green'
 ];
 
+var FIREBALL_COLORS = [
+    '#ee4830',
+    '#30a8ee',
+    '#5ce6c0',
+    '#e848d5',
+    '#e6e848'
+];
+
 var KEY_CODES = {
     ENTER: 13,
     ESC: 27
 };
 
-var setupIcon = document.querySelector('.setup-open-icon');
+var setupOpen = document.querySelector('.setup-open');
 var setupWindow = document.querySelector('.setup');
 var setupClose = document.querySelector('.setup-close');
 var setupSimilar = document.querySelector('.setup-similar');
 var similarListElement = document.querySelector('.setup-similar-list');
 var similarCharacterTemplate = document.getElementById('similar-wizard-template').content;
+var setupUserName = document.querySelector('.setup-user-name');
 
 /**
  * Получает случайный элемент массива
@@ -119,11 +128,83 @@ renderRandomCharacters();
 
 // Открытие и закрытие окна настроек персонажа 
 
-setupIcon.addEventListener('click', function() {
+setupOpen.addEventListener('click', function() {
     setupWindow.classList.remove('hidden');
     setupSimilar.classList.remove('hidden');
 });
 
+setupOpen.addEventListener('keydown', function(event) {
+    event.preventDefault;
+    if (event.keyCode === KEY_CODES.ENTER) {
+        setupWindow.classList.remove('hidden');
+        setupSimilar.classList.remove('hidden');
+    }
+});
+
 setupClose.addEventListener('click', function() {
     setupWindow.classList.add('hidden');
+    setupSimilar.classList.add('hidden');
+});
+
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode === KEY_CODES.ESC) {
+        setupWindow.classList.add('hidden');
+        setupSimilar.classList.add('hidden');
+    }
+});
+
+var setupForm = document.querySelector('.setup-wizard-form');
+var userCharacter = setupForm.querySelector('.my_wizard');
+var coat = userCharacter.querySelector('.wizard-coat'); 
+var eyes = userCharacter.querySelector('.wizard-eyes'); 
+var fireball = setupForm.querySelector('.setup-fireball-wrap'); 
+var setupSubmitBtn = setupWindow.querySelector('.setup-submit');
+var inputCoatColor = setupForm.querySelector('input[name="coat-color"]');
+var inputEyesColor = setupForm.querySelector('input[name="eyes-color"]');
+var inputFireballColor = setupForm.querySelector('input[name="fireball-color"]');
+
+console.log(inputCoatColor.value);
+
+setupSubmitBtn.addEventListener('submit', function() {
+    setupWindow.classList.add('hidden');
+    setupSimilar.classList.add('hidden');
+});
+
+/**
+ * Получает случайный цвет из массива и красит элемент, 
+ * так же добавляет цвет в value соответствующего input
+ * @param {DOM-element} element 
+ * @param {Array} arrayColor 
+ * @param {DOM-element} input
+ * @return {string} color
+ */
+function getRandomColor(element, arrayColor, input) {
+    var elementColor = [];
+    for (var index = 0; index < 1; index++) {
+        elementColor[index] = {
+            color: arrayColor[getRandomArrayElement(arrayColor)]
+        };
+    }
+    
+    input.value = elementColor[0].color;
+    
+    if (element.classList.contains('setup-fireball-wrap')) {
+        element.style.background = elementColor[0].color;   
+    } else {
+        element.style.fill = elementColor[0].color;
+    }
+}
+
+// Перекрашивание элементов персонажа по клику в случайный цвет
+
+coat.addEventListener('click', function(event) {
+    getRandomColor(coat, COAT_COLORS, inputCoatColor);
+});
+
+eyes.addEventListener('click', function(event) {
+    getRandomColor(eyes, EYES_COLORS, inputEyesColor);
+});
+
+fireball.addEventListener('click', function(event) {
+    getRandomColor(fireball, FIREBALL_COLORS, inputFireballColor);
 });
