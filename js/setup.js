@@ -63,6 +63,7 @@ var setupSimilar = document.querySelector('.setup-similar');
 var similarListElement = document.querySelector('.setup-similar-list');
 var similarCharacterTemplate = document.getElementById('similar-wizard-template').content;
 var setupUserName = document.querySelector('.setup-user-name');
+var overlaySetup = document.querySelector('.overlay');
 
 /**
  * Получает случайный элемент массива
@@ -131,6 +132,7 @@ renderRandomCharacters();
 setupOpen.addEventListener('click', function() {
     setupWindow.classList.remove('hidden');
     setupSimilar.classList.remove('hidden');
+    overlaySetup.classList.remove('invisible');    
 });
 
 setupOpen.addEventListener('keydown', function(event) {
@@ -138,18 +140,21 @@ setupOpen.addEventListener('keydown', function(event) {
     if (event.keyCode === KEY_CODES.ENTER) {
         setupWindow.classList.remove('hidden');
         setupSimilar.classList.remove('hidden');
+        overlaySetup.classList.remove('invisible');
     }
 });
 
 setupClose.addEventListener('click', function() {
     setupWindow.classList.add('hidden');
     setupSimilar.classList.add('hidden');
+    overlaySetup.classList.add('invisible');
 });
 
 document.addEventListener('keydown', function(event) {
     if (event.keyCode === KEY_CODES.ESC) {
         setupWindow.classList.add('hidden');
         setupSimilar.classList.add('hidden');
+        overlaySetup.classList.add('invisible');
     }
 });
 
@@ -162,13 +167,6 @@ var setupSubmitBtn = setupWindow.querySelector('.setup-submit');
 var inputCoatColor = setupForm.querySelector('input[name="coat-color"]');
 var inputEyesColor = setupForm.querySelector('input[name="eyes-color"]');
 var inputFireballColor = setupForm.querySelector('input[name="fireball-color"]');
-
-console.log(inputCoatColor.value);
-
-setupSubmitBtn.addEventListener('submit', function() {
-    setupWindow.classList.add('hidden');
-    setupSimilar.classList.add('hidden');
-});
 
 /**
  * Получает случайный цвет из массива и красит элемент, 
@@ -208,3 +206,9 @@ eyes.addEventListener('click', function(event) {
 fireball.addEventListener('click', function(event) {
     getRandomColor(fireball, FIREBALL_COLORS, inputFireballColor);
 });
+
+setupSubmitBtn.addEventListener('submit', function(event) {
+    setupWindow.classList.add('hidden');
+    setupSimilar.classList.add('hidden');
+});
+
