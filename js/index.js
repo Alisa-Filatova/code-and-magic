@@ -319,7 +319,7 @@ var REVIEWS_START = 4;
 function createItemHtml(item) {
     return (
         '<article class="review ' + (item.new ? 'new' : '') + '">' +
-            '<img src="' + item.avatar + '" class="review__author" alt="' + item.name + '">' +
+            '<img src="' + item.avatar + '" class="review__author" alt="' + item.author + '">' +
             '<span class="review__rating" data-like="' + item.rate + '"></span>' +
             '<p class="review__text">' + item.review + '</p>' +
             '<div class="review__quiz">Полезный отзыв?' +
