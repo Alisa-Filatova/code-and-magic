@@ -4,6 +4,7 @@
 
 var $window = $(window);
 var $wizard = $('.wizard');
+var $wizardSvg = $('.wizard-svg')
 var $clouds = $('.clouds');
 var $description = $('.demo__description');
 var $gameOver = $('.demo__game-over');
@@ -60,8 +61,8 @@ $window.keydown(function(event) {
             return;
         }
 
-        $wizard.removeClass('wizard-reversed')
-            .css({
+        $wizardSvg.removeClass('wizard-reversed');
+        $wizard.css({
                 left: positionLeft + steps + 'px',
                 transition: 0.3 + 's'
             });
@@ -80,8 +81,8 @@ $window.keydown(function(event) {
             return;
         }
 
-        $wizard.addClass('wizard-reversed')
-            .css({
+        $wizardSvg.addClass('wizard-reversed');
+        $wizard.css({
                 left: positionLeft - steps + 'px',
                 transition: 0.3 + 's'
             });
@@ -118,7 +119,7 @@ $window.keydown(function(event) {
     // Запуск фаербола
 
     if (event.keyCode == keyCodes.shift 
-        && $wizard.is('.wizard-reversed') 
+        && $wizardSvg.is('.wizard-reversed') 
         && descriptionIsInvisible 
         && galleryIsInvisible 
         && gameOverIsInvisible
@@ -139,7 +140,7 @@ $window.keydown(function(event) {
 
     if (event.keyCode == keyCodes.shift 
         && descriptionIsInvisible 
-        && $wizard.is(':not(.wizard-reversed)') 
+        && $wizardSvg.is(':not(.wizard-reversed)') 
         && galleryIsInvisible 
         && gameOverIsInvisible
         && setupWindowIsInvisible) {
@@ -538,4 +539,3 @@ $reviewsList.on('click', '.review__quiz-answer', function() {
        $this.addClass('review__quiz-answer_check');
    }
 });
-

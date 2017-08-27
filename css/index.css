@@ -209,7 +209,6 @@ a:active {
 }
 
 .wizard {
-  background: url('../img/wizard.gif') no-repeat;
   width: 61px;
   height: 84px;
   position: absolute;
@@ -221,13 +220,13 @@ a:active {
 }
 
 .wizard-reversed {
-  background: url('../img/wizard-reversed.gif') no-repeat;
+  transform: scaleX(-1);
+  z-index: 50;
 }
 
 .fireball {
   width: 24px;
   height: 24px;
-  background: url('../img/fireball.gif');
   position: absolute;
   top: -7%;
   left: 69%;
@@ -237,6 +236,7 @@ a:active {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   transition: 0.2s ease-in;
+  z-index: 60;
 }
 
 .fireball-reversed {
@@ -793,12 +793,9 @@ input[type=radio]:checked + .review-mark__label {
   top: 0;
   width: 75px;
   height: 75px;
-  background: #ee4830;
 }
 
 .setup-fireball {
-  background: url('../img/fireball-mask.png');
-  background-size: 75px 75px;
   width: 75px;
   height: 75px;
 }
@@ -885,6 +882,12 @@ input[type=radio]:checked + .review-mark__label {
 
 .setup-submit:disabled {
   opacity: 0.3;
+}
+
+.wizard-coat,
+.wizard-eyes,
+.fireball-group {
+  cursor: pointer;
 }
 
 /*Animation*/
