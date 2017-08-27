@@ -58,11 +58,11 @@ var KEY_CODES = {
 
 var setupOpen = document.querySelector('.setup-open');
 var setupWindow = document.querySelector('.setup');
-var setupClose = document.querySelector('.setup-close');
-var setupSimilar = document.querySelector('.setup-similar');
-var similarListElement = document.querySelector('.setup-similar-list');
+var setupClose = setupWindow.querySelector('.setup-close');
+var setupSimilar = setupWindow.querySelector('.setup-similar');
+var similarListElement = setupWindow.querySelector('.setup-similar-list');
+var setupUserName = setupWindow.querySelector('.setup-user-name');
 var similarCharacterTemplate = document.getElementById('similar-wizard-template').content;
-var setupUserName = document.querySelector('.setup-user-name');
 var overlaySetup = document.querySelector('.overlay');
 
 /**
@@ -137,6 +137,7 @@ setupOpen.addEventListener('click', function() {
 
 setupOpen.addEventListener('keydown', function(event) {
     event.preventDefault;
+    
     if (event.keyCode === KEY_CODES.ENTER) {
         setupWindow.classList.remove('hidden');
         setupSimilar.classList.remove('hidden');
@@ -152,7 +153,8 @@ setupClose.addEventListener('click', function(event) {
 
 document.addEventListener('keydown', function(event) {
      event.preventDefault;
-    if (event.keyCode === KEY_CODES.ESC) {
+    
+     if (event.keyCode === KEY_CODES.ESC) {
         setupWindow.classList.add('hidden');
         setupSimilar.classList.add('hidden');
         overlaySetup.classList.add('invisible');
