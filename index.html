@@ -401,14 +401,13 @@
                                     value="Синий Пендальф"
                                     maxlength="25"
                                     minlength="2"
-                                    tabindex="1"
                                     required
                                 >
                             </label>
                         </div>
                         
                     </div>
-                    <span class="setup-close" tabindex="0">&times;</span>
+                    <span class="setup-close">&times;</span>
                 </div>
 
                 <div class="setup-artifacts-shop">
@@ -466,7 +465,11 @@
                 <div class="setup-player">
                     <div class="setup-wizard-appearance">
                         <div class="setup-wizard-wrap">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 86" class="setup-wizard">
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                viewBox="0 0 62 86" 
+                                class="setup-wizard"
+                            >
                                 <g class="my_wizard" fill="rgb(101, 137, 164)">
                                     <use xlink:href="#wizard-coat" class="wizard-coat"></use>
                                     <use xlink:href="#wizard-head" class="wizard-head"></use>
@@ -476,7 +479,7 @@
                             </svg>
                         </div>
                         <input type="hidden" name="coat-color" value="rgb(101, 137, 164)">
-                        <input type="hidden" name="eyes-color" value="black">
+                        <input type="hidden" name="eyes-color" value="grey">
                     </div>
 
                     <div class="setup-fireball-wrap">
@@ -526,7 +529,11 @@
                         <div class="setup-similar-list"></div>
                     </div>
 
-                    <input type="submit" value="Сохранить" class="button setup-submit">
+                    <input 
+                        type="submit" 
+                        value="Сохранить" 
+                        class="button setup-submit"
+                    >
                 </div>
             </form>
         </div>
@@ -536,7 +543,11 @@
         <script type="text/html" id="similar-wizard-template">
             <div class="setup-similar-item">
                 <div class="setup-similar-content">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 86" class="setup-similar-wizard">
+                    <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 62 86" 
+                        class="setup-similar-wizard"
+                    >
                         <g class="wizard">
                             <use xlink:href="#wizard-coat" class="wizard-coat"></use>
                             <use xlink:href="#wizard-head" class="wizard-head"></use>
@@ -550,8 +561,14 @@
         </script>
 
         <script src="js/jquery-3.2.1.min.js"></script>
-        <script src="js/index.js"></script>
-        <script src="js/setup.js"></script>
+        <script src="js/utils.js"></script>
+        <script src="js/game.js"></script>
+        <script src="js/gallery.js"></script>
+        <script src="js/reviews.js"></script>
+        <script src="js/dialog.js"></script>
+        <script src="js/random-characters.js"></script>
+        <script src="js/colorize.js"></script>
+        <script src="js/drag-and-drop.js"></script>
 
     </body>
 </html>
