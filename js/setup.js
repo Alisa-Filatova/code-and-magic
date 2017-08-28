@@ -222,39 +222,39 @@ setupForm.addEventListener('submit', function(event) {
 var dialogHandle = setupWindow.querySelector('.setup-user-pic');
 
 dialogHandle.addEventListener('mousedown', function (event) {
-  event.preventDefault();
+    event.preventDefault();
 
-  var startCoords = {
-    x: event.clientX,
-    y: event.clientY
-  };
+    var startCoords = {
+        x: event.clientX,
+        y: event.clientY
+    };
 
-  var onMouseMove = function (moveevent) {
-    moveevent.preventDefault();
+    var onMouseMove = function (moveevent) {
+        moveevent.preventDefault();
 
     var shift = {
-      x: startCoords.x - moveevent.clientX,
-      y: startCoords.y - moveevent.clientY
+        x: startCoords.x - moveevent.clientX,
+        y: startCoords.y - moveevent.clientY
     };
 
     startCoords = {
-      x: moveevent.clientX,
-      y: moveevent.clientY
+        x: moveevent.clientX,
+        y: moveevent.clientY
     };
 
     setupWindow.style.top = (setupWindow.offsetTop - shift.y) + 'px';
     setupWindow.style.left = (setupWindow.offsetLeft - shift.x) + 'px';
-  };
+    };
 
-  var onMouseUp = function (upevent) {
-    upevent.preventDefault();
+    var onMouseUp = function (upevent) {
+        upevent.preventDefault();
 
-    document.removeEventListener('mousemove', onMouseMove);
-    document.removeEventListener('mouseup', onMouseUp);
-  };
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+    };
 
-  document.addEventListener('mousemove', onMouseMove);
-  document.addEventListener('mouseup', onMouseUp);
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
 });
 
 // Перетаскивание артефактов из магазина в рюкзак
