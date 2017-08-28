@@ -228,8 +228,8 @@ a:active {
   width: 24px;
   height: 24px;
   position: absolute;
-  top: -7%;
-  left: 69%;
+  top: -27%;
+  left: 94%;
   -webkit-animation: rotate 1s;
   animation: rotate 1s;
   -webkit-animation-timing-function: linear;
@@ -240,7 +240,7 @@ a:active {
 }
 
 .fireball-reversed {
-  left: -4%;
+  left: -39%;
 }
 
 .demo__description,
@@ -271,6 +271,8 @@ a:active {
 .demo__description_text {
   color: #000;
   font-size: 16px;
+  line-height: 20px;
+  padding: 5px;
 }
 
 main {
@@ -725,6 +727,10 @@ input[type=radio]:checked + .review-mark__label {
   display: inline-block;
 }
 
+.setup-user-pic {
+  cursor: pointer;
+}
+
 .setup-open-icon,
 .setup-user-pic {
   width: 40px;
@@ -828,6 +834,11 @@ input[type=radio]:checked + .review-mark__label {
 }
 
 .artifact:active {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.artifact_active {
   cursor: grabbing;
   cursor: -webkit-grabbing;
 }
