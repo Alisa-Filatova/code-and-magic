@@ -32,13 +32,13 @@
                             <g class="fireball-group" id="fireball">
                                 <path class="fireball-path" fill="#EC3C2D" d="M5 172.8v-103h42.5v-30h75v30l30 1v60l67.5 1.4V97.8l26 .4v57.6l-32.5 1-1 55h-30l-3 37.4h-102l.5-14-12-1 .5-21.4-22 .4-.5-11-13-2.4.5-15-17-.6v-10zM156.5 5H184v26.5h-27.5z M190 68h24.5v24H190zM220.5 36.5H246V62h-25.5z"/>
                                 <path style="opacity:0.4" fill="#F06F33" d="M64.8 102.2v-30l30 3 2 27 22.4 3 5 58.6h62l-3.4 21-30.6 2.4-2 29.6H96.8l.4-41-30-.6-2.4-14.4-22-.6v-58z"/>
-                                <path style="opacity:0.4" fill="#FFF" d="M70.2 118h31.5v26.5H70.2z"/>
-                                <path style="opacity:0.6" fill="#FFF" d="M86 142.5h31.5V169H86z"/>
+                                <path style="opacity:0.6" fill="#FFF" d="M70.2 118h31.5v26.5H70.2z"/>
+                                <path style="opacity:0.9" fill="#FFF" d="M86 142.5h31.5V169H86z"/>
                             </g>
                         </svg>
                     </div>
                     <svg class="wizard-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 86">
-                        <g id="wizard" class="my-wizard">
+                        <g id="wizard" class="my-wizard" fill="rgb(101, 137, 164)">
                             <g id="wizard-coat">
                                 <polygon points="19 67 19 59 14 59 14 82 9 82 9 86 23 86 23 67 19 67"/>
                                 <polygon points="19 59 19 67 23 67 23 86 48 86 48 54 19 54 19 59"/>
@@ -88,6 +88,7 @@
             </div>
             <div class="setup-open" tabindex="0">
                 <img src="./img/avatars/user-8.jpg" class="setup-open-icon">
+                <span class="user-name"></span>
             </div>
         </header>
 
@@ -410,13 +411,23 @@
                     <div class="setup-artifacts-cell">
                         <img 
                             src="img/icon-star.png" 
+                            class="artifact"
                             alt="Star" 
                             width="65" 
                             height="50" 
                             draggable="true"
                         >
                     </div>
-                    <div class="setup-artifacts-cell"></div>
+                    <div class="setup-artifacts-cell">
+                        <img 
+                            src="img/fireball.svg" 
+                            class="artifact" 
+                            alt="Star" 
+                            width="50" 
+                            height="50" 
+                            draggable="true"
+                        >
+                    </div>
                     <div class="setup-artifacts-cell"></div>
                     <div class="setup-artifacts-cell"></div>
 
@@ -430,7 +441,7 @@
                     <div class="setup-wizard-appearance">
                         <div class="setup-wizard-wrap">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 86" class="setup-wizard">
-                                <g class="my_wizard">
+                                <g class="my_wizard" fill="rgb(101, 137, 164)">
                                     <use xlink:href="#wizard-coat" class="wizard-coat"></use>
                                     <use xlink:href="#wizard-head" class="wizard-head"></use>
                                     <use xlink:href="#wizard-eyes" class="wizard-eyes"></use>
@@ -450,9 +461,18 @@
                         </svg>
                         <input type="hidden" name="fireball-color" value="#ee4830">
                     </div>
-
+                    
                     <div class="setup-artifacts" dropzone="move">
-                        <div class="setup-artifacts-cell"></div>
+                        <div class="setup-artifacts-cell">
+                            <img 
+                                src="img/fireball.svg"
+                                class="artifact" 
+                                alt="Fireball" 
+                                width="50" 
+                                height="50" 
+                                draggable="true"
+                            >
+                        </div>
                         <div class="setup-artifacts-cell"></div>
                         <div class="setup-artifacts-cell"></div>
                         <div class="setup-artifacts-cell"></div>
@@ -487,7 +507,7 @@
 
         <div class="overlay invisible"></div>
 
-        <template id="similar-wizard-template" style="display: none">
+        <script type="text/html" id="similar-wizard-template">
             <div class="setup-similar-item">
                 <div class="setup-similar-content">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 86" class="setup-similar-wizard">
@@ -501,7 +521,7 @@
                 </div>
                 <p class="setup-similar-label"></p>
             </div>
-        </template>
+        </script>
 
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/index.js"></script>
