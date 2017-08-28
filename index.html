@@ -68,9 +68,10 @@
                 
                 <div class="demo__description">
                     <p class="demo__description_text">
-                        Я перемещаюсь по нажатию на стрелки
-                        и стреляю фаерболом с помощью shift.
-                        Скорее жми на <b>пробел</b>, и игра начнется...
+                        Я перемещаюсь по нажатию на <b>стрелки</b>
+                        и стреляю фаерболом с помощью <b>shift</b>.<br>
+                        Жми на <b>пробел</b> и игра начнется!<br>
+                        Чтобы настроить персонажа зайди в <b>личный кабинет</b>.
                     </p>
                 </div>
 
@@ -380,29 +381,32 @@
                 <div class="setup-title">
                     <div class="setup-user">
                         <div class="upload">
-                            <img 
-                                class="setup-user-pic" 
-                                src="./img/avatars/user-8.jpg" 
-                                alt="user"
-                            >
+                            <label>
+                                <img 
+                                    class="setup-user-pic" 
+                                    src="./img/avatars/user-8.jpg" 
+                                    alt="user"
+                                >
                             <input 
                                 class="hidden"
                                 type="file" 
                                 name="avatar" 
                             >
+                            </label>
+                            <label>
+                                <input 
+                                    type="text" 
+                                    name="username" 
+                                    class="setup-user-name" 
+                                    value="Синий Пендальф"
+                                    maxlength="25"
+                                    minlength="2"
+                                    tabindex="1"
+                                    required
+                                >
+                            </label>
                         </div>
-                        <label>
-                            <input 
-                                type="text" 
-                                name="username" 
-                                class="setup-user-name" 
-                                value="Синий Пендальф"
-                                maxlength="25"
-                                minlength="2"
-                                tabindex="1"
-                                required
-                            >
-                        </label>
+                        
                     </div>
                     <span class="setup-close" tabindex="0">&times;</span>
                 </div>
@@ -410,9 +414,10 @@
                 <div class="setup-artifacts-shop">
                     <div class="setup-artifacts-cell">
                         <img 
-                            src="img/icon-star.png" 
+                            src="img/artifacts/icon-star.png" 
                             class="artifact"
                             alt="Star" 
+                            title="Бонус"
                             width="65" 
                             height="50" 
                             draggable="true"
@@ -420,16 +425,37 @@
                     </div>
                     <div class="setup-artifacts-cell">
                         <img 
-                            src="img/fireball.svg" 
+                            src="img/artifacts/fireball.svg" 
                             class="artifact" 
-                            alt="Star" 
+                            alt="fireball" 
+                            title="Фаерболл"
                             width="50" 
                             height="50" 
                             draggable="true"
                         >
                     </div>
-                    <div class="setup-artifacts-cell"></div>
-                    <div class="setup-artifacts-cell"></div>
+                    <div class="setup-artifacts-cell">
+                        <img 
+                            src="img/artifacts/mana.png" 
+                            class="artifact" 
+                            alt="mana" 
+                            title="Мана"
+                            width="50" 
+                            height="58" 
+                            draggable="true"
+                        >
+                    </div>
+                    <div class="setup-artifacts-cell">
+                        <img 
+                            src="img/artifacts/icon-heart.png" 
+                            class="artifact" 
+                            alt="life" 
+                            title="Жизнь"
+                            width="50" 
+                            height="47" 
+                            draggable="true"
+                        >
+                    </div>
 
                     <div class="setup-artifacts-cell"></div>
                     <div class="setup-artifacts-cell"></div>
@@ -465,7 +491,7 @@
                     <div class="setup-artifacts" dropzone="move">
                         <div class="setup-artifacts-cell">
                             <img 
-                                src="img/fireball.svg"
+                                src="img/artifacts/fireball.svg"
                                 class="artifact" 
                                 alt="Fireball" 
                                 width="50" 
