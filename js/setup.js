@@ -217,34 +217,76 @@ setupForm.addEventListener('submit', function(event) {
     overlaySetup.classList.add('invisible');
 });
 
-artifact.onmousedown = function(element) {
-    
-    var coords = artifact.getBoundingClientRect();
-    var shiftX = element.pageX - coords.left;
-    var shiftY = element.pageY - coords.top;
-    
-    artifact.style.position = 'absolute';
-    document.body.appendChild(artifact);
-    
-    moveAt(element);
+// Перетаскивание диалогового окна настроек
 
-    artifact.style.zIndex = 7000; 
+var dialogHandle = setupWindow.querySelector('.setup-user-pic');
 
-    function moveAt(element) {
-        artifact.style.left = element.pageX - shiftX + 'px';
-        artifact.style.top = element.pageY - shiftY + 'px';
+dialogHandle.addEventListener('mousedown', function (event) {
+  event.preventDefault();
+
+  var startCoords = {
+    x: event.clientX,
+    y: event.clientY
+  };
+
+  var onMouseMove = function (moveevent) {
+    moveevent.preventDefault();
+
+    var shift = {
+      x: startCoords.x - moveevent.clientX,
+      y: startCoords.y - moveevent.clientY
+    };
+
+    startCoords = {
+      x: moveevent.clientX,
+      y: moveevent.clientY
+    };
+
+    setupWindow.style.top = (setupWindow.offsetTop - shift.y) + 'px';
+    setupWindow.style.left = (setupWindow.offsetLeft - shift.x) + 'px';
+  };
+
+  var onMouseUp = function (upevent) {
+    upevent.preventDefault();
+
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+  };
+
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
+});
+
+// Перетаскивание артефактов из магазина в рюкзак
+
+var shopElement = setupWindow.querySelector('.setup-artifacts-shop');
+var draggedItem = null;
+
+shopElement.addEventListener('dragstart', function(event) {
+    if (event.target.tagName.toLowerCase() === 'img') {
+        draggedItem = event.target;
+        event.dataTransfer.setData('text/plain', event.target.alt);
     }
+});
 
-    document.onmousemove = function(element) {
-        moveAt(element);
-    };
+var artifactsElement = setupWindow.querySelector('.setup-artifacts');
 
-    document.onmouseup = function() {
-        document.onmousemove = null;
-        artifact.onmouseup = null;
-    };
-}
-    
-artifact.ondragstart = function() {
-    return false;
-};
+artifactsElement.addEventListener('dragover', function(event) {
+    event.preventDefault();
+});
+
+artifactsElement.addEventListener('drop', function(event) {
+    event.target.style.backgroundColor = '';
+    event.target.appendChild(draggedItem);
+});
+
+artifactsElement.addEventListener('dragenter', function(event) {
+    event.target.style.backgroundColor = 'yellow';
+    event.preventDefault();
+});
+
+artifactsElement.addEventListener('dragleave', function(event) {
+    event.target.style.backgroundColor = '';
+    event.preventDefault();
+});
+
