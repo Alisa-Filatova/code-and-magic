@@ -1,4 +1,4 @@
-            /**
+/**
  * Created by Alisa on 27.07.17.
  */
 
@@ -464,7 +464,7 @@ $filterGood.on('click', function() {
        .closest($review)
        .removeClass('invisible');
 
-   $moreReviews.hide();
+   $allReviews.hide();
    $addReview.hide();
 });
 
@@ -485,7 +485,7 @@ $filterBad.on('click', function() {
        .closest($review)
        .removeClass('invisible');
 
-   $moreReviews.hide();
+   $allReviews.hide();
    $addReview.hide();
 });
 
@@ -497,6 +497,7 @@ $filterAll.on('click', function() {
        .removeClass('invisible');
 
    $addReview.show();
+   $allReviews.show(); 
 });
 
 $filterRecent.on('click', function() {
@@ -509,7 +510,7 @@ $filterRecent.on('click', function() {
        .find('.new')
        .removeClass('invisible');
 
-   $moreReviews.hide();
+   $allReviews.hide();
    $addReview.hide();
 });
 
@@ -523,7 +524,7 @@ $filterPopular.on('click', function() {
        .find('.popular')
        .removeClass('invisible');
 
-   $moreReviews.hide();
+   $allReviews.hide();
    $addReview.hide();
 });
 
