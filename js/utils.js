@@ -1,6 +1,3 @@
-'use strict';
-
-var SERVER_URL = 'https://1510.dump.academy/code-and-magick';
 
 var KEY_CODES = {
     RIGHT: 39,
@@ -22,3 +19,15 @@ var KEY_CODES = {
 function getRandomIndex(array) {
     return Math.floor(Math.random() * array.length);
 };
+
+/**
+ * Удаляет все элементы с соответствующим классом
+ * 
+ * @param {ClassName} className 
+ */
+function removeElementsByClass(className) {
+    var elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+}

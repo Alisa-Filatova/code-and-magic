@@ -1054,7 +1054,6 @@ input[type=radio]:checked + .review-mark__label {
   }
 }
 
-
 /*Вспомогательные классы*/
 
 .invisible {
@@ -1067,4 +1066,15 @@ input[type=radio]:checked + .review-mark__label {
 
 .hide {
   visibility: hidden;
+}
+
+.error-message {
+  z-index: 5000;
+  margin: 0 auto;
+  text-align: center;
+  background-color: red;
+  position: absolute;
+  left: 0;
+  right: 0;
+  font-size: 30px;
 }

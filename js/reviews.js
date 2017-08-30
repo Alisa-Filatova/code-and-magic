@@ -1,11 +1,12 @@
 // Reviews
 
 (function() {
-    var $window = $(window);
-    var dataUrl = 'data/reviews.json';
-    var $reviewsList = $('.reviews-list');
+    var URL = 'data/reviews.json';
     var REVIEWS_START = 4;
-
+    
+    var $window = $(window);
+    var $reviewsList = $('.reviews-list');
+    
     /**
      * Создает разметку отзыва
      *
@@ -29,7 +30,7 @@
     // Стартовая загрузка отзывов
 
     $(function() {
-        $.getJSON(dataUrl).done(function(data) {
+        $.getJSON(URL).done(function(data) {
             
             $.each(data.slice(0, REVIEWS_START), function(index, item) {
                 var itemHtml = createItemHtml(item);
@@ -47,38 +48,37 @@
     var $closeForm = $('.review-form__btn_close');
 
     $allReviews.on('click', function(event) {
-    event.preventDefault();
-        
-    $(this).remove();
+        event.preventDefault();
+            
+        $(this).remove();
 
-    $.getJSON(dataUrl).done(function(data) {
-            var reviewsAll = data.lengtn;
-            $.each(data.slice(4, reviewsAll), function(index, item) {
-                var itemHtml = createItemHtml(item);
-                $reviewsList.append(itemHtml);
-            });
-        }).fail(function() { 
-            alert('Ошибка загрузки!'); 
+        $.getJSON(URL).done(function(data) {
+                var reviewsAll = data.lengtn;
+                $.each(data.slice(4, reviewsAll), function(index, item) {
+                    var itemHtml = createItemHtml(item);
+                    $reviewsList.append(itemHtml);
+                });
+            }).fail(function() { 
+                alert('Ошибка загрузки!'); 
         })
     });
 
     $addReview.on('click', function(event) {
-    event.preventDefault();
+        event.preventDefault();
 
-    $reviewOverlay.removeClass('invisible');
+        $reviewOverlay.removeClass('invisible');
     });
 
     $closeForm.on('click', function(event) {
-    event.preventDefault();
+        event.preventDefault();
 
-    $reviewOverlay.addClass('invisible');
+        $reviewOverlay.addClass('invisible');
     });
 
-
     $window.keydown(function() {
-    if (event.keyCode == KEY_CODES.ESC && $reviewOverlay.not('invisible')) {
-        $reviewOverlay.addClass('invisible');
-    }
+        if (event.keyCode == KEY_CODES.ESC && $reviewOverlay.not('invisible')) {
+            $reviewOverlay.addClass('invisible');
+        }
     });
 
     /**
@@ -86,40 +86,40 @@
     */
 
     $('.review-form').on('submit', function(event) {
-    event.preventDefault();
+        event.preventDefault();
 
-    var $ratingValue = $('.review-form__group_mark input[type=radio]:checked');
-    var $nameValue = $('#review-name');
-    var $reviewText = $('#review-text');
+        var $ratingValue = $('.review-form__group_mark input[type=radio]:checked');
+        var $nameValue = $('#review-name');
+        var $reviewText = $('#review-text');
 
-    var $reviewFirst = $('.review:first');
+        var $reviewFirst = $('.review:first');
 
-    $reviewFirst.clone().prependTo($reviewsList);
+        $reviewFirst.clone().prependTo($reviewsList);
 
-    var $reviewRatingFirst = $('.review__rating:first');
-    var $reviewAuthorFirst = $('.review__author:first');
-    var $reviewTextFirst = $('.review__text:first');
-    var $answerYes = $('.review__quiz-answer_yes:first');
-    var $answerNo = $('.review__quiz-answer_no:first');
+        var $reviewRatingFirst = $('.review__rating:first');
+        var $reviewAuthorFirst = $('.review__author:first');
+        var $reviewTextFirst = $('.review__text:first');
+        var $answerYes = $('.review__quiz-answer_yes:first');
+        var $answerNo = $('.review__quiz-answer_no:first');
 
-    $reviewTextFirst.text($reviewText.val());
-    $reviewAuthorFirst.attr('alt', $nameValue.val());
-    $reviewRatingFirst.attr('data-like', $ratingValue.val());
-    $answerYes.addClass('new');
-    $answerNo.addClass('new');
+        $reviewTextFirst.text($reviewText.val());
+        $reviewAuthorFirst.attr('alt', $nameValue.val());
+        $reviewRatingFirst.attr('data-like', $ratingValue.val());
+        $answerYes.addClass('new');
+        $answerNo.addClass('new');
 
 
-    if ($reviewRatingFirst.attr('data-like') <= 3) {
-        $reviewAuthorFirst.attr('src', 'img/avatars/new-review-bad.jpg');
-    }
+        if ($reviewRatingFirst.attr('data-like') <= 3) {
+            $reviewAuthorFirst.attr('src', 'img/avatars/new-review-bad.jpg');
+        }
 
-    if ($reviewRatingFirst.attr('data-like') > 3) {
-        $reviewAuthorFirst.attr('src', 'img/avatars/new-review-good.jpg');
-    }
+        if ($reviewRatingFirst.attr('data-like') > 3) {
+            $reviewAuthorFirst.attr('src', 'img/avatars/new-review-good.jpg');
+        }
 
-    $reviewOverlay.addClass('invisible');
-    $nameValue.val('');
-    $reviewText.val('');
+        $reviewOverlay.addClass('invisible');
+        $nameValue.val('');
+        $reviewText.val('');
     });
 
     /**
@@ -138,96 +138,96 @@
     var $filterPopularRadio = $('#reviews-popular');
 
     $filterGood.on('click', function() {
-    var $ratingBad = $('.review__rating[data-like=1], .review__rating[data-like=2], .review__rating[data-like=3]');
-    var $ratingGood = $('.review__rating[data-like=4], .review__rating[data-like=5]');
+        var $ratingBad = $('.review__rating[data-like=1], .review__rating[data-like=2], .review__rating[data-like=3]');
+        var $ratingGood = $('.review__rating[data-like=4], .review__rating[data-like=5]');
 
-    $filterGoodRadio.prop('checked', true);
+        $filterGoodRadio.prop('checked', true);
 
-    var $review = $('.review');
+        var $review = $('.review');
 
-    $reviewsList
-        .find($ratingBad)
-        .closest($review)
-        .addClass('invisible');
-    $reviewsList
-        .find($ratingGood)
-        .closest($review)
-        .removeClass('invisible');
+        $reviewsList
+            .find($ratingBad)
+            .closest($review)
+            .addClass('invisible');
+        $reviewsList
+            .find($ratingGood)
+            .closest($review)
+            .removeClass('invisible');
 
-    $allReviews.hide();
-    $addReview.hide();
+        $allReviews.hide();
+        $addReview.hide();
     });
 
     $filterBad.on('click', function() {
-    var $ratingBad = $('.review__rating[data-like=1], .review__rating[data-like=2], .review__rating[data-like=3]');
-    var $ratingGood = $('.review__rating[data-like=4], .review__rating[data-like=5]');
+        var $ratingBad = $('.review__rating[data-like=1], .review__rating[data-like=2], .review__rating[data-like=3]');
+        var $ratingGood = $('.review__rating[data-like=4], .review__rating[data-like=5]');
 
-    $filterBadRadio.prop('checked', true);
+        $filterBadRadio.prop('checked', true);
 
-    var $review = $('.review');
+        var $review = $('.review');
 
-    $reviewsList
-        .find($ratingGood)
-        .closest($review)
-        .addClass('invisible');
-    $reviewsList
-        .find($ratingBad)
-        .closest($review)
-        .removeClass('invisible');
+            $reviewsList
+                .find($ratingGood)
+                .closest($review)
+                .addClass('invisible');
+            $reviewsList
+                .find($ratingBad)
+                .closest($review)
+                .removeClass('invisible');
 
-    $allReviews.hide();
-    $addReview.hide();
+        $allReviews.hide();
+        $addReview.hide();
     });
 
     $filterAll.on('click', function() {
-    $filterAllRadio.prop('checked', true);
+        $filterAllRadio.prop('checked', true);
 
-    $reviewsList
-        .find('.review')
-        .removeClass('invisible');
+        $reviewsList
+            .find('.review')
+            .removeClass('invisible');
 
-    $addReview.show();
-    $allReviews.show(); 
+        $addReview.show();
+        $allReviews.show(); 
     });
 
     $filterRecent.on('click', function() {
-    $filterRecentRadio.prop('checked', true);
+        $filterRecentRadio.prop('checked', true);
 
-    $reviewsList
-        .find($('.review'))
-        .addClass('invisible');
-    $reviewsList
-        .find('.new')
-        .removeClass('invisible');
+        $reviewsList
+            .find($('.review'))
+            .addClass('invisible');
+        $reviewsList
+            .find('.new')
+            .removeClass('invisible');
 
-    $allReviews.hide();
-    $addReview.hide();
+        $allReviews.hide();
+        $addReview.hide();
     });
 
     $filterPopular.on('click', function() {
-    $filterPopularRadio.prop('checked', true);
+        $filterPopularRadio.prop('checked', true);
 
-    $reviewsList
-        .find('.review')
-        .addClass('invisible');
-    $reviewsList
-        .find('.popular')
-        .removeClass('invisible');
+        $reviewsList
+            .find('.review')
+            .addClass('invisible');
+        $reviewsList
+            .find('.popular')
+            .removeClass('invisible');
 
-    $allReviews.hide();
-    $addReview.hide();
+        $allReviews.hide();
+        $addReview.hide();
     });
 
     // Кнопки полезный отзыв (да/нет)
 
     $reviewsList.on('click', '.review__quiz-answer', function() {
-    var $this = $(this);
+        var $this = $(this);
 
-    if ($this.hasClass('review__quiz-answer_yes')) {
-        $this.addClass('review__quiz-answer_check');
-        $this.closest('.review').addClass('popular');
-    } else {
-        $this.addClass('review__quiz-answer_check');
-    }
+        if ($this.hasClass('review__quiz-answer_yes')) {
+            $this.addClass('review__quiz-answer_check');
+            $this.closest('.review').addClass('popular');
+        } else {
+            $this.addClass('review__quiz-answer_check');
+        }
     });
 })();

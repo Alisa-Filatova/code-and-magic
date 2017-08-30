@@ -1,41 +1,36 @@
+
 /**
  * Game 
  */
 (function() {
-    var $window = $(window);
-    var $wizard = $('.wizard');
-    var $wizardSvg = $('.wizard-svg')
-    var $clouds = $('.clouds');
-    var $description = $('.demo__description');
-    var $gameOver = $('.demo__game-over');
-    var $fireball = $('.fireball');
+    var wizard = document.querySelector('.wizard');
+    var wizardParams = document.querySelector('.wizard_vector')
+    var clouds = document.querySelector('.clouds');
+    var description = document.querySelector('.demo__description');
+    var gameOver = document.querySelector('.demo__game-over');
+    var fireball = wizard.querySelector('.fireball');
 
-    var demoWidth = $('.demo').width();
+    var demoWidth = document.querySelector('.demo').width;
     var demoHeight = 210 + 'px';
     var steps = 100;
 
-    // Скролл облаков
-
-    $window.scroll(function(event) {
-        var scrolled = $window.scrollTop();
-
-        $clouds.css('background-position-x', -scrolled + 'px');
+    window.addEventListener('scroll', function(event) {
+        var scrolled = window.scrollY;
+        
+        clouds.style.backgroundPositionX = -scrolled + 'px';
     });
 
-    /**
-     * DEMO
-     */
-    $window.keydown(function(event) {
-        var positionLeft = $wizard.position().left;
-        var descriptionIsInvisible = $description.hasClass('invisible');
-        var galleryIsInvisible = $('.overlay-gallery').hasClass('invisible');
-        var gameOverIsInvisible = $gameOver.hasClass('invisible');
-        var setupWindowIsInvisible = $('.setup').hasClass('hidden');
+    window.addEventListener('keydown', function(event) {
+        var positionLeft = wizard.offsetLeft;
+        var descriptionIsInvisible = description.classList.contains('invisible');
+        var galleryIsInvisible = document.querySelector('.overlay-gallery').classList.contains('invisible');
+        var gameOverIsInvisible = gameOver.classList.contains('invisible');
+        var setupWindowIsInvisible = document.querySelector('.setup').classList.contains('hidden');
 
         if (event.keyCode == KEY_CODES.SPACEBAR && setupWindowIsInvisible) {
             event.preventDefault();
-            $description.addClass('invisible');
-            $wizard.css('bottom', 1 + 'px');
+            description.classList.add('invisible');
+            wizard.style.bottom = 1 + 'px';
         }
 
         // Передвижения мага
@@ -51,13 +46,11 @@
                 return;
             }
 
-            $wizardSvg.removeClass('wizard-reversed');
-            $wizard.css({
-                    left: positionLeft + steps + 'px',
-                    transition: 0.3 + 's'
-                });
+            wizardParams.classList.remove('wizard-reversed');
+            wizard.style.left = positionLeft + steps + 'px';
+            wizard.style.transition = 0.3 + 's';
 
-            $fireball.removeClass('fireball-reversed');
+            fireball.classList.remove('fireball-reversed');
         }
 
         if (event.keyCode == KEY_CODES.LEFT 
@@ -71,13 +64,11 @@
                 return;
             }
 
-            $wizardSvg.addClass('wizard-reversed');
-            $wizard.css({
-                    left: positionLeft - steps + 'px',
-                    transition: 0.3 + 's'
-                });
+            wizardParams.classList.add('wizard-reversed');
+            wizard.style.left = positionLeft - steps + 'px';
+            wizard.style.transition = 0.3 + 's';
 
-            $fireball.addClass('fireball-reversed');
+            fireball.classList.add('fireball-reversed');
         }
 
         if (event.keyCode == KEY_CODES.TOP 
@@ -87,10 +78,8 @@
             && setupWindowIsInvisible) {
             event.preventDefault();
             
-            $wizard.css({
-                bottom: demoHeight,
-                transition: 0.3 + 's'
-            });
+            wizard.style.bottom = demoHeight;
+            wizard.style.transition = 0.3 + 's';
         }
 
         if (event.keyCode == KEY_CODES.BOTTOM 
@@ -100,63 +89,59 @@
             && setupWindowIsInvisible) {
             event.preventDefault();
             
-            $wizard.css({
-                bottom: 0,
-                transition: 0.3 + 's'
-            });
+            wizard.style.bottom = 0;
+            wizard.style.transition = 0.3 + 's';
         }
 
         // Запуск фаербола
 
         if (event.keyCode == KEY_CODES.SHIFT 
-            && $wizardSvg.is('.wizard-reversed') 
+            && wizardParams.classList.contains('wizard-reversed') 
             && descriptionIsInvisible 
             && galleryIsInvisible 
             && gameOverIsInvisible
             && setupWindowIsInvisible) {
             event.preventDefault();
 
-            $fireball
-                .clone()
-                .addClass('slide-out-left fireball-reversed')
-                .prependTo($wizard);
+            fireballShot = fireball.cloneNode(true);
+            fireballShot.classList.add('slide-out-left');
+            fireballShot.classList.add('fireball-reversed');
+            wizard.appendChild(fireballShot);
 
             setTimeout(function () {
-                $('.slide-out-left').remove();
-                $('.slide-out-right').remove();
-                $gameOver.removeClass('invisible')
+                removeElementsByClass('slide-out-left');
+                removeElementsByClass('slide-out-right');
+                gameOver.classList.remove('invisible')
             }, 6000);
         }
 
         if (event.keyCode == KEY_CODES.SHIFT 
             && descriptionIsInvisible 
-            && $wizardSvg.is(':not(.wizard-reversed)') 
+            && wizardParams.classList.contains('wizard-reversed') === false
             && galleryIsInvisible 
             && gameOverIsInvisible
             && setupWindowIsInvisible) {
             event.preventDefault();
 
-            $fireball
-                .clone()
-                .removeClass('fireball-reversed slide-out-left')
-                .addClass('slide-out-right')
-                .prependTo($wizard);
+            fireballShot = fireball.cloneNode(true);
+            fireballShot.classList.remove('fireball-reversed');
+            fireballShot.classList.remove('slide-out-left');
+            fireballShot.classList.add('slide-out-right');
+            wizard.appendChild(fireballShot);
         }
     });
 
-    $window.keyup(function(event) {
-        var descriptionIsInvisible = $description.hasClass('invisible');
-        var galleryIsInvisible = $('.overlay-gallery').hasClass('invisible');
+    window.addEventListener('keyup', function(event) {
+        var descriptionIsInvisible = description.classList.contains('invisible');
+        var galleryIsInvisible = document.querySelector('.overlay-gallery').classList.contains('invisible');
 
         if (event.keyCode == KEY_CODES.TOP 
             && descriptionIsInvisible 
             && galleryIsInvisible) {
             event.preventDefault();
             
-            $wizard.css({
-                bottom: 0,
-                transition: 1 +'s ease-in'
-            });
+            wizard.style.bottom = 0;
+            wizard.style.transition = 1 +'s ease-in';
         }
     });
 })();

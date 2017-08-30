@@ -1,4 +1,3 @@
-'use strict';
 // События на диалоговом окне
 
 (function() {
@@ -12,8 +11,6 @@
     var overlaySetup = document.querySelector('.overlay');
     
     var setupForm = setupWindow.querySelector('.setup-wizard-form');
-    var setupSubmitBtn = setupWindow.querySelector('.setup-submit');
-    
     var dialogHandle = setupWindow.querySelector('.setup-user-pic');
     
     var userName = setupOpen.querySelector('.user-name');
@@ -61,14 +58,16 @@
     });
 
     setupForm.addEventListener('submit', function(event) {
+        window.backend.upload(new FormData(setupForm), function(response) {
+            myWizardEyes.style.fill = inputEyesColor.value; 
+            myWizard.style.fill = inputCoatColor.value; 
+            userName.textContent = inputUserName.value; 
+            
+            setupWindow.classList.add('hidden');
+            setupSimilar.classList.add('hidden');
+            overlaySetup.classList.add('invisible');
+        });
         event.preventDefault();
-        
-        myWizard.style.fill = inputCoatColor.value; 
-        myWizardEyes.style.fill = inputEyesColor.value; 
-        userName.textContent = inputUserName.value;
-        setupWindow.classList.add('hidden');
-        setupSimilar.classList.add('hidden');
-        overlaySetup.classList.add('invisible');
     });
 
 // Перетаскивание диалогового окна настроек

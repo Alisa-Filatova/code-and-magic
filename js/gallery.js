@@ -1,143 +1,154 @@
+
 /**
  * ScreenShots Gallery
  */
 (function() {
-
-    var $window = $(window);
     
-    // Элементы галереи
-
-    var $imageSmall = $('.photogallery__image');
-    var $imageBig = $('.overlay-gallery-preview img');
-    var $imageSmallBox = $('.photogallery__image-box');
-    var $imageBigBox = $('.overlay-gallery__preview');
-    var $overlayGallery = $('.overlay-gallery');
+    var gallery = document.querySelector('.photogallery');
+    var imageBigBox = document.querySelector('.overlay-gallery__preview');
+    var imageSmall = document.querySelectorAll('.photogallery__image');
+    var imageBig = imageBigBox.querySelector('img');
+    var imageSmallBox = document.querySelector('.photogallery__image-box');
+    
+    var overlayGallery = document.querySelector('.overlay-gallery');
 
     // Навигация
 
-    var $closeGallery = $('.gallery__btn_close');
-    var $next = $('.overlay-gallery-control_right');
-    var $prev = $('.overlay-gallery-control_left');
-    var $moreScreenShots = $('.photogallery__btn');
+    var closeGallery = document.querySelector('.gallery__btn_close');
+    var next = document.querySelector('.overlay-gallery-control_right');
+    var prev = document.querySelector('.overlay-gallery-control_left');
+    var moreScreenShots = document.querySelector('.photogallery__btn');
+    var totalBox = document.querySelector('.preview-number_total');
 
+    var currentStep = 1;
+    var currentBox = document.querySelector('.preview-number_current');
+    
     // Функция отображения кол-ва скриншотов
 
-    var $imageCount = $imageSmall.clone();
-    var currentStep = 1;
-    var $currentBox = $('.preview-number_current');
-    var $totalBox = $('.preview-number_total');
-
     function totalImages() {
-        $totalBox.text($imageCount.length);
+        totalBox.textContent = imageSmall.length;
     }
 
-    // Кнопка "Больше скриншотов"
-
-    $moreScreenShots.on('click', function(event) {
+    moreScreenShots.addEventListener('click', function(event) {
         event.preventDefault();
-        $(this).remove();
-        $imageSmallBox
-            .filter('.invisible')
-            .removeClass('invisible');
+        var imageSmallBox = document.querySelectorAll('.photogallery__image-box');
+
+        for (var i = 0; i < imageSmallBox.length; i++) {
+            imageSmallBox[i].classList.remove('invisible');
+        }
+        
+        this.classList.add('invisible');
+        
         totalImages();
     });
 
-    // Открытие галереи по клику на картинку
-
-    $imageSmallBox.on('click', function(event) {
+    gallery.addEventListener('click', function(event) {
         event.preventDefault();
-        var $this = $(this);
-        $overlayGallery.removeClass('invisible');
-        currentStep = $this.attr('data-img');
-        $currentBox.text(currentStep);
-        totalImages();
-        $this
-            .children('img')
-            .clone()
-            .appendTo($imageBigBox)
-            .siblings('img')
-            .remove();
+        if (event.target.className.toLowerCase() === 'photogallery__image') {
+            var openItem = event.target;
+            
+            overlayGallery.classList.remove('invisible');
+            
+            currentStep = openItem.getAttribute('data-img');
+            currentBox.textContent = currentStep;
+            
+            totalImages();
+            
+            var cloneImage = openItem.cloneNode(true);
+            imageBigBox.appendChild(cloneImage);
+        }
     });
 
     // Перелистывание картинок вперед и назад
 
-    $next.on('click', function() {
-        currentStep++;
-        $currentBox.text(currentStep);
-        totalImages();
-        $imageSmall
-            .filter($('[data-img = ' + currentStep + ']'))
-            .clone().appendTo($imageBigBox)
-            .siblings('img')
-            .remove();
-        if (currentStep >= $totalBox.text()) {
-            currentStep = $totalBox.text();
-            $currentBox.text(currentStep);
-        }
-    });
-
-    $prev.on('click', function() {
-        currentStep--;
-        $currentBox.text(currentStep);
-        totalImages();
-        $imageSmall
-            .filter($('[data-img = ' + currentStep + ']'))
-            .clone().appendTo($imageBigBox)
-            .siblings('img')
-            .remove();
-        if (currentStep <= 1) {
-            currentStep = 1;
-            $currentBox.text(currentStep);
-        }
-    });
-
-    $window.keydown(function() {
-
-        var $checkOverlay = $overlayGallery.not('invisible');
-
-        if (event.keyCode == KEY_CODES.RIGHT && $checkOverlay) {
+    next.addEventListener('click', function() {
+        if (currentStep >= totalBox.textContent) {
+            currentStep = totalBox.textContent;
+            currentBox.textContent = currentStep;
+        } else {
+            var prevImg = imageBigBox.querySelector('img');
+            imageBigBox.removeChild(prevImg);
+            
+            var cloneImage = imageSmall[currentStep].cloneNode(true);
+            imageBigBox.appendChild(cloneImage);
+            
             currentStep++;
-            $currentBox.text(currentStep);
+            currentBox.textContent = currentStep;
             totalImages();
-            $imageSmall
-                .filter($('[data-img = ' + currentStep + ']'))
-                .clone().appendTo($imageBigBox)
-                .siblings('img')
-                .remove();
-            if (currentStep >= $totalBox.text()) {
-                currentStep = $totalBox.text();
-                $currentBox.text(currentStep);
+        }
+    });
+
+    prev.addEventListener('click', function() {
+        if (currentStep <= 1) {
+                currentStep = 1;
+                currentBox.textContent = currentStep;
+                return;
+            } else {
+                var prevImg = imageBigBox.querySelector('img');
+                imageBigBox.removeChild(prevImg);
+                
+                var cloneImage = imageSmall[currentStep].cloneNode(true);
+                imageBigBox.appendChild(cloneImage);
+        
+                currentStep--;
+                currentBox.textContent = currentStep;
+                totalImages();
+            }
+    });
+
+    window.addEventListener('keydown', function() {
+
+        var checkOverlay = overlayGallery.classList.contains('invisible') === false;
+
+        if (event.keyCode == KEY_CODES.RIGHT && checkOverlay) {
+            if (currentStep >= totalBox.textContent) {
+                currentStep = totalBox.textContent;
+                currentBox.textContent = currentStep;
+            } else {
+                var prevImg = imageBigBox.querySelector('img');
+                imageBigBox.removeChild(prevImg);
+                
+                var cloneImage = imageSmall[currentStep].cloneNode(true);
+                imageBigBox.appendChild(cloneImage);
+                
+                currentStep++;
+                currentBox.textContent = currentStep;
+                totalImages();
             }
         }
 
-        if (event.keyCode == KEY_CODES.LEFT && $checkOverlay) {
-            currentStep--;
-            $currentBox.text(currentStep);
-            totalImages();
-            $imageSmall
-                .filter($('[data-img = ' + currentStep + ']'))
-                .clone().appendTo($imageBigBox)
-                .siblings('img')
-                .remove();
+        if (event.keyCode == KEY_CODES.LEFT && checkOverlay) {
             if (currentStep <= 1) {
                 currentStep = 1;
-                $currentBox.text(currentStep);
+                currentBox.textContent = currentStep;
+                return;
+            } else {
+                var prevImg = imageBigBox.querySelector('img');
+                imageBigBox.removeChild(prevImg);
+                
+                var cloneImage = imageSmall[currentStep].cloneNode(true);
+                imageBigBox.appendChild(cloneImage);
+        
+                currentStep--;
+                currentBox.textContent = currentStep;
+                totalImages();
             }
         }
 
-        // Закрытие галереи по нажатию esc
-
-        if (event.keyCode == KEY_CODES.ESC && $checkOverlay) {
-            $imageBig.remove().siblings('img').remove();
-            $overlayGallery.addClass('invisible');
+        if (event.keyCode == KEY_CODES.ESC && checkOverlay) {
+            var prevImg = imageBigBox.querySelector('img');
+            
+            imageBigBox.removeChild(prevImg);
+            overlayGallery.classList.add('invisible');
         }
     });
 
-    // Закрытие галереи по нажатию крестика
-
-    $closeGallery.on('click', function(event) {
+    closeGallery.addEventListener('click', function(event) {
         event.preventDefault();
-        $imageBig.remove().siblings('img').remove();
-        $overlayGallery.addClass('invisible');
+        
+        var prevImg = imageBigBox.querySelector('img');
+
+        imageBigBox.removeChild(prevImg);
+        overlayGallery.classList.add('invisible');
     });
 })();
