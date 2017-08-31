@@ -1,4 +1,3 @@
-
 /**
  * Game 
  */
@@ -12,6 +11,7 @@
     var fireballCount = document.querySelector('.fireball__count');
     var wizardName = document.querySelector('.wizard__name');
     var userName = document.querySelector('.user-name');
+    var gameResult = document.querySelector('.fireball__result');
     var enemy = document.querySelector('.dark-knight');
 
     var demoWidth = document.querySelector('.demo').offsetWidth;
@@ -68,6 +68,7 @@
             enemy.style.transition = 0.3 + 's';
             enemy.style.left = -80 + 'px';
             
+            gameResult.textContent = ' и уничтожил Мордор! Гордись своей победой';
             gameOver.classList.add('invisible');
             description.classList.remove('invisible');
         }
@@ -150,14 +151,19 @@
             setTimeout(function () {
                 enemy.classList.remove('float');
                 enemy.style.transition = 0.3 + 's';
-                enemy.classList.add('dark-knight_dead');
+               
+                if (gameResult.textContent === 'и спалил лес с эльфами! Ты проиграл') {
+                    enemy.classList.remove('dark-knight_dead');
+                } else {
+                    enemy.classList.add('dark-knight_dead');
+                }
 
                 removeElementsByClass('slide-out-left');
                 removeElementsByClass('slide-out-right');
 
                 wizardName.textContent = userName.textContent;
                 gameOver.classList.remove('invisible');
-            }, 4000);
+            }, 3000);
         }
 
         if (event.keyCode == KEY_CODES.SHIFT 
@@ -173,8 +179,19 @@
             fireballShot.classList.remove('slide-out-left');
             fireballShot.classList.add('slide-out-right');
             wizard.appendChild(fireballShot);
-        }
 
+            setTimeout(function () {
+                enemy.classList.remove('float');
+                enemy.style.transition = 0.3 + 's';
+
+                removeElementsByClass('slide-out-left');
+                removeElementsByClass('slide-out-right');
+
+                wizardName.textContent = userName.textContent;
+                gameResult.textContent = 'и спалил лес с эльфами! Ты проиграл';
+                gameOver.classList.remove('invisible');
+            }, 1000);
+        }
     });
 
     window.addEventListener('keyup', function(event) {
