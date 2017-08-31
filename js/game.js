@@ -53,6 +53,7 @@
             
             enemy.style.transition = 8 + 's';
             enemy.style.left = 200 + 'px';
+            enemy.classList.add('float');
         }
 
         if (event.keyCode == KEY_CODES.ENTER 
@@ -147,13 +148,16 @@
             wizard.appendChild(fireballShot);
 
             setTimeout(function () {
+                enemy.classList.remove('float');
                 enemy.style.transition = 0.3 + 's';
                 enemy.classList.add('dark-knight_dead');
+
                 removeElementsByClass('slide-out-left');
                 removeElementsByClass('slide-out-right');
+
                 wizardName.textContent = userName.textContent;
                 gameOver.classList.remove('invisible');
-            }, 5000);
+            }, 4000);
         }
 
         if (event.keyCode == KEY_CODES.SHIFT 
