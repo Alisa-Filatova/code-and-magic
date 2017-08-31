@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Game 
  */
@@ -31,6 +33,7 @@
         var galleryIsInvisible = document.querySelector('.overlay-gallery').classList.contains('invisible');
         var gameOverIsInvisible = gameOver.classList.contains('invisible');
         var setupWindowIsInvisible = document.querySelector('.setup').classList.contains('hidden');
+        var fireballShot = null;
        
         if (event.keyCode == KEY_CODES.SHIFT 
             && setupWindowIsInvisible

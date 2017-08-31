@@ -1,3 +1,5 @@
+'use strict';
+
 (function() {
     var SERVER_URL = 'http://lenortat.spb.ru/enroll';
     var URL = 'data/wizards.json'
