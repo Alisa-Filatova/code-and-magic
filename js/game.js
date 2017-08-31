@@ -16,8 +16,9 @@
     var gameResult = document.querySelector('.fireball__result');
     var enemy = document.querySelector('.dark-knight');
 
-    var demoWidth = document.querySelector('.demo').offsetWidth;
-    var demoHeight = 210 + 'px';
+    var DEMO_WIDTH = document.querySelector('.demo').offsetWidth;
+    var DEMO_HEIGHT = 210 + 'px';
+    
     var steps = 100;
     var keyPress = 0;
 
@@ -85,7 +86,7 @@
             && setupWindowIsInvisible) {
             event.preventDefault();
             
-            if (positionLeft > demoWidth) {
+            if (positionLeft > DEMO_WIDTH) {
                 return;
             }
 
@@ -121,7 +122,7 @@
             && setupWindowIsInvisible) {
             event.preventDefault();
             
-            wizard.style.bottom = demoHeight;
+            wizard.style.bottom = DEMO_HEIGHT;
             wizard.style.transition = 0.3 + 's';
         }
 
