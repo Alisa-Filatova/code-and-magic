@@ -198,16 +198,6 @@ a:active {
   opacity: 0.9;
 }
 
-.gollum {
-  background: url('../img/gollum.png');
-  width: 80px;
-  height: 80px;
-  background-size: contain;
-  position: absolute;
-  top: -73px;
-  right: -6px;
-}
-
 .wizard {
   width: 61px;
   height: 84px;
@@ -253,6 +243,16 @@ a:active {
   padding: 5px;
   box-shadow: 7px 10px 0 rgba(0, 0, 0, 0.6);
   transform: skew(-9deg);
+  z-index: 100;
+}
+
+.demo__game-over {
+  z-index: 90;
+}
+
+.fireball__count {
+  font-weight: bold;
+  color: red;
 }
 
 .demo__description::after {

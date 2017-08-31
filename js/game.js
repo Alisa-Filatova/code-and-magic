@@ -9,10 +9,14 @@
     var description = document.querySelector('.demo__description');
     var gameOver = document.querySelector('.demo__game-over');
     var fireball = wizard.querySelector('.fireball');
+    var fireballCount = document.querySelector('.fireball__count');
+    var wizardName = document.querySelector('.wizard__name');
+    var userName = document.querySelector('.user-name');
 
-    var demoWidth = document.querySelector('.demo').width;
+    var demoWidth = document.querySelector('.demo').offsetWidth;
     var demoHeight = 210 + 'px';
     var steps = 100;
+    var keyPress = 0;
 
     window.addEventListener('scroll', function(event) {
         var scrolled = window.scrollY;
@@ -26,11 +30,31 @@
         var galleryIsInvisible = document.querySelector('.overlay-gallery').classList.contains('invisible');
         var gameOverIsInvisible = gameOver.classList.contains('invisible');
         var setupWindowIsInvisible = document.querySelector('.setup').classList.contains('hidden');
+       
+        if (event.keyCode == KEY_CODES.SHIFT 
+            && setupWindowIsInvisible
+            && descriptionIsInvisible 
+            && galleryIsInvisible 
+            && gameOverIsInvisible) {
+            keyPress++;
+            fireballCount.textContent = keyPress;
+        }
 
         if (event.keyCode == KEY_CODES.SPACEBAR && setupWindowIsInvisible) {
             event.preventDefault();
             description.classList.add('invisible');
-            wizard.style.bottom = 1 + 'px';
+            gameOver.classList.add('invisible');
+            wizard.style.bottom = 2 + 'px';
+        }
+
+        if (event.keyCode == KEY_CODES.ENTER 
+            && galleryIsInvisible 
+            && setupWindowIsInvisible) {
+            event.preventDefault();
+            keyPress = keyPress - fireballCount.textContent;
+            fireballCount.textContent = keyPress;
+            gameOver.classList.add('invisible');
+            description.classList.remove('invisible');
         }
 
         // Передвижения мага
@@ -41,7 +65,7 @@
             && gameOverIsInvisible
             && setupWindowIsInvisible) {
             event.preventDefault();
-
+            
             if (positionLeft > demoWidth) {
                 return;
             }
@@ -94,7 +118,7 @@
         }
 
         // Запуск фаербола
-
+      
         if (event.keyCode == KEY_CODES.SHIFT 
             && wizardParams.classList.contains('wizard-reversed') 
             && descriptionIsInvisible 
@@ -111,7 +135,8 @@
             setTimeout(function () {
                 removeElementsByClass('slide-out-left');
                 removeElementsByClass('slide-out-right');
-                gameOver.classList.remove('invisible')
+                wizardName.textContent = userName.textContent;
+                gameOver.classList.remove('invisible');
             }, 6000);
         }
 
@@ -129,6 +154,7 @@
             fireballShot.classList.add('slide-out-right');
             wizard.appendChild(fireballShot);
         }
+
     });
 
     window.addEventListener('keyup', function(event) {
@@ -140,7 +166,7 @@
             && galleryIsInvisible) {
             event.preventDefault();
             
-            wizard.style.bottom = 0;
+            wizard.style.bottom = 2 + 'px';
             wizard.style.transition = 1 +'s ease-in';
         }
     });
