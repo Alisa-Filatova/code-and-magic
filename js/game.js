@@ -12,6 +12,7 @@
     var fireballCount = document.querySelector('.fireball__count');
     var wizardName = document.querySelector('.wizard__name');
     var userName = document.querySelector('.user-name');
+    var enemy = document.querySelector('.dark-knight');
 
     var demoWidth = document.querySelector('.demo').offsetWidth;
     var demoHeight = 210 + 'px';
@@ -40,19 +41,32 @@
             fireballCount.textContent = keyPress;
         }
 
-        if (event.keyCode == KEY_CODES.SPACEBAR && setupWindowIsInvisible) {
+        if (event.keyCode == KEY_CODES.SPACEBAR 
+            && setupWindowIsInvisible  
+            && gameOverIsInvisible) {
             event.preventDefault();
+            
             description.classList.add('invisible');
             gameOver.classList.add('invisible');
+            
             wizard.style.bottom = 2 + 'px';
+            
+            enemy.style.transition = 8 + 's';
+            enemy.style.left = 200 + 'px';
         }
 
         if (event.keyCode == KEY_CODES.ENTER 
             && galleryIsInvisible 
             && setupWindowIsInvisible) {
             event.preventDefault();
+            
             keyPress = keyPress - fireballCount.textContent;
             fireballCount.textContent = keyPress;
+            
+            enemy.classList.remove('dark-knight_dead');
+            enemy.style.transition = 0.3 + 's';
+            enemy.style.left = -80 + 'px';
+            
             gameOver.classList.add('invisible');
             description.classList.remove('invisible');
         }
@@ -112,7 +126,7 @@
             && gameOverIsInvisible
             && setupWindowIsInvisible) {
             event.preventDefault();
-            
+
             wizard.style.bottom = 0;
             wizard.style.transition = 0.3 + 's';
         }
@@ -133,11 +147,13 @@
             wizard.appendChild(fireballShot);
 
             setTimeout(function () {
+                enemy.style.transition = 0.3 + 's';
+                enemy.classList.add('dark-knight_dead');
                 removeElementsByClass('slide-out-left');
                 removeElementsByClass('slide-out-right');
                 wizardName.textContent = userName.textContent;
                 gameOver.classList.remove('invisible');
-            }, 6000);
+            }, 5000);
         }
 
         if (event.keyCode == KEY_CODES.SHIFT 

@@ -206,12 +206,12 @@ a:active {
   left: 21%;
   transition: 0.4s;
   transition-timing-function: linear;
-  z-index: 50;
+  z-index: 40;
 }
 
 .wizard-reversed {
   transform: scaleX(-1);
-  z-index: 50;
+  z-index: 40;
 }
 
 .fireball {
@@ -227,6 +227,7 @@ a:active {
   animation-iteration-count: infinite;
   transition: 0.2s ease-in;
   z-index: 60;
+  z-index: 40;
 }
 
 .fireball-reversed {
@@ -273,6 +274,22 @@ a:active {
   font-size: 16px;
   line-height: 20px;
   padding: 5px;
+}
+
+.dark-knight {
+  width: 90px;
+  position: absolute;
+  left: -69px;
+  bottom: 0;
+  transition: 8s;
+  z-index: 50;
+  opacity: 0.7;
+}
+
+.dark-knight_dead {
+  transition: 1s;
+  transform: rotate(-90deg);
+  bottom: -62px;
 }
 
 main {
