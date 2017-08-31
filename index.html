@@ -410,49 +410,62 @@
                     </div>
                     <span class="setup-close">&times;</span>
                 </div>
-
-                <div class="setup-artifacts-shop">
+                <h2 class="money">
+                    <img 
+                        class="money__icon" 
+                        src="img/gold.png" 
+                        alt="gold" 
+                        width="40px" 
+                        height="30px"
+                    ><span class="money__count">5000</span>
+                </h2>
+                <div class="setup-artifacts-shop" dropzone="move">
+                    <h2 class="setup-artifacts-shop__title">Магазин артефактов</h2>
                     <div class="setup-artifacts-cell">
                         <img 
                             src="img/artifacts/icon-star.png" 
-                            class="artifact"
+                            class="artifact sold"
                             alt="Star" 
-                            title="Бонус"
+                            title="Бонус. Бонус. Цена: 100"
                             width="65" 
                             height="50" 
+                            data="100"
                             draggable="true"
                         >
                     </div>
                     <div class="setup-artifacts-cell">
                         <img 
                             src="img/artifacts/fireball.svg" 
-                            class="artifact" 
+                            class="artifact sold" 
                             alt="fireball" 
-                            title="Фаерболл"
+                            title="Фаерболл. Цена: 1000"
                             width="50" 
                             height="50" 
+                            data="1000"
                             draggable="true"
                         >
                     </div>
                     <div class="setup-artifacts-cell">
                         <img 
                             src="img/artifacts/mana.png" 
-                            class="artifact" 
+                            class="artifact sold" 
                             alt="mana" 
-                            title="Мана"
+                            title="Мана. Цена: 600"
                             width="50" 
-                            height="58" 
+                            height="58"
+                            data="600" 
                             draggable="true"
                         >
                     </div>
                     <div class="setup-artifacts-cell">
                         <img 
                             src="img/artifacts/icon-heart.png" 
-                            class="artifact" 
+                            class="artifact sold" 
                             alt="life" 
-                            title="Жизнь"
+                            title="Здоровье. Цена: 500"
                             width="50" 
                             height="47" 
+                            data="500"
                             draggable="true"
                         >
                     </div>
@@ -460,7 +473,7 @@
                     <div class="setup-artifacts-cell"></div>
                     <div class="setup-artifacts-cell"></div>
                     <div class="setup-artifacts-cell"></div>
-                    <div class="setup-artifacts-cell"></div>
+                    
                 </div>
 
                 <div class="setup-player">
@@ -491,18 +504,14 @@
                         </svg>
                         <input type="hidden" name="fireball-color" value="#ee4830">
                     </div>
+                    <span class="setup__description">
+                        Чтобы получить случайный цвет своему магу: 
+                        кликни по его плащу, глазам и фаерболу.
+                    </span>
                     
                     <div class="setup-artifacts" dropzone="move">
-                        <div class="setup-artifacts-cell">
-                            <img 
-                                src="img/artifacts/fireball.svg"
-                                class="artifact" 
-                                alt="Fireball" 
-                                width="50" 
-                                height="50" 
-                                draggable="true"
-                            >
-                        </div>
+                        <h2 class="setup-artifacts__title">Рюкзак</h2>
+                        <div class="setup-artifacts-cell"></div>
                         <div class="setup-artifacts-cell"></div>
                         <div class="setup-artifacts-cell"></div>
                         <div class="setup-artifacts-cell"></div>
@@ -561,7 +570,6 @@
             </div>
         </script>
 
-       
         <script src="js/utils.js"></script>
         <script src="js/backend.js"></script>
         <script src="js/game.js"></script>
