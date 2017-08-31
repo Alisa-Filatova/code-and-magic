@@ -1,7 +1,7 @@
 (function() {
     var SERVER_URL = 'http://lenortat.spb.ru/enroll';
-    var URL = 'https://1510.dump.academy/code-and-magick/data'
-
+    var URL = 'data/wizards.json'
+    
     var setup = function(onSuccess, onError) {
         var xhr = new XMLHttpRequest();
         xhr.responseType = 'json';
@@ -10,7 +10,7 @@
             if (xhr.status === 200) {
                 onSuccess(xhr.response);
             } else {
-                onError('Произошла ошибка соединения. Статус' + xhr.status + '');
+                onError('Произошла ошибка. Статус '  + xhr.status + ' ');
             }
         });
 

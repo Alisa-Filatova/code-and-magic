@@ -42,7 +42,7 @@
 
     var errorHandler = function(errorMessage) {
         var node = document.createElement('div');
-        node.classList.add('.error-message');
+        node.classList.add('error-message');
         node.textContent = errorMessage;
         document.body.insertAdjacentElement('afterbegin', node);
     };
