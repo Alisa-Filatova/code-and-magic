@@ -57,19 +57,29 @@
         }
     });
 
+    var successHandler = function(response) {
+        myWizardEyes.style.fill = inputEyesColor.value; 
+        myWizard.style.fill = inputCoatColor.value; 
+        userName.textContent = inputUserName.value; 
+        
+        setupWindow.classList.add('hidden');
+        setupSimilar.classList.add('hidden');
+        overlaySetup.classList.add('invisible');
+    };
+
+    var errorHandler = function(errorMessage) {
+        var node = document.createElement('div');
+        node.classList.add('.error-message');
+        node.textContent = errorMessage;
+        document.body.insertAdjacentElement('afterbegin', node);
+    };
+
     setupForm.addEventListener('submit', function(event) {
-        window.backend.upload(new FormData(setupForm), function(response) {
-            myWizardEyes.style.fill = inputEyesColor.value; 
-            myWizard.style.fill = inputCoatColor.value; 
-            userName.textContent = inputUserName.value; 
-            
-            setupWindow.classList.add('hidden');
-            setupSimilar.classList.add('hidden');
-            overlaySetup.classList.add('invisible');
-        });
+        window.backend.upload(new FormData(setupForm), successHandler, errorHandler);
+
         event.preventDefault();
     });
-
+    
 // Перетаскивание диалогового окна настроек
 
     dialogHandle.addEventListener('mousedown', function(event) {

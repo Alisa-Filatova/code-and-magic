@@ -1122,7 +1122,7 @@ input[type=radio]:checked + .review-mark__label {
 }
 
 .error-message {
-  z-index: 5000;
+  z-index: 10000;
   margin: 0 auto;
   text-align: center;
   background-color: red;
