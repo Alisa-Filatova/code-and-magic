@@ -24,10 +24,12 @@
         if (draggedItem.classList.contains('bought')) {
             event.target.style.backgroundColor = '';
             event.target.appendChild(draggedItem);
+            
             money.textContent = money.textContent;
         } else {
             event.target.style.backgroundColor = '';
             event.target.appendChild(draggedItem);
+            
             draggedItem.classList.add('bought');
             draggedItem.classList.remove('sold');
 
@@ -62,10 +64,12 @@
         if (draggedItem.classList.contains('sold')) {
             event.target.style.backgroundColor = '';
             event.target.appendChild(draggedItem);
+            
             money.textContent = money.textContent;
         } else {
             event.target.style.backgroundColor = '';
             event.target.appendChild(draggedItem);
+            
             draggedItem.classList.add('sold');
             draggedItem.classList.remove('bought');
         
