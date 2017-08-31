@@ -27,14 +27,14 @@
 
     window.backend = { 
         upload: function(data, onSuccess, onError) {
-                var xhr = setup(onSuccess, onError);
-                xhr.open('POST', SERVER_URL);
-                xhr.send(data);
+            var xhr = setup(onSuccess, onError);
+            xhr.open('POST', SERVER_URL);
+            xhr.send(data);
         },
-        load: function (onSuccess, onError) {
-                var xhr = setup(onSuccess, onError);
-                xhr.open('GET', SERVER_URL + '/data');
-                xhr.send();
+        load: function(onSuccess, onError) {
+            var xhr = setup(onSuccess, onError);
+            xhr.open('GET', SERVER_URL + '/data');
+            xhr.send();
         }
     };
 })();
