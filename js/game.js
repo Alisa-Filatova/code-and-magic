@@ -22,6 +22,9 @@
     var steps = 100;
     var keyPress = 0;
 
+    var gameWin = ' и уничтожил Мордор! Гордись своей победой';
+    var gameLose = 'и спалил лес с эльфами! Ты проиграл';
+
     window.addEventListener('scroll', function(event) {
         var scrolled = window.scrollY;
         
@@ -72,7 +75,7 @@
             enemy.style.transition = 0.3 + 's';
             enemy.style.left = -80 + 'px';
             
-            gameResult.textContent = ' и уничтожил Мордор! Гордись своей победой';
+            gameResult.textContent = gameWin;
             gameOver.classList.add('invisible');
             description.classList.remove('invisible');
         }
@@ -156,7 +159,7 @@
                 enemy.classList.remove('float');
                 enemy.style.transition = 0.3 + 's';
                
-                if (gameResult.textContent === 'и спалил лес с эльфами! Ты проиграл') {
+                if (gameResult.textContent === gameLose) {
                     enemy.classList.remove('dark-knight_dead');
                 } else {
                     enemy.classList.add('dark-knight_dead');
@@ -192,7 +195,7 @@
                 removeElementsByClass('slide-out-right');
 
                 wizardName.textContent = userName.textContent;
-                gameResult.textContent = 'и спалил лес с эльфами! Ты проиграл';
+                gameResult.textContent = gameLose;
                 gameOver.classList.remove('invisible');
             }, 1000);
         }

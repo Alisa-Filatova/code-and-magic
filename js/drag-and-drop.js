@@ -14,7 +14,7 @@
     shopElement.addEventListener('dragstart', function(event) {
         if (event.target.tagName.toLowerCase() === 'img') {
             draggedItem = event.target;
-            event.dataTransfer.setData('text/plain', event.target.alt);
+            event.dataTransfer.setData('text/plain', 'anything');
         }
     });
 
@@ -37,6 +37,7 @@
 
             money.textContent = money.textContent - draggedItem.getAttribute('data');
         }
+        event.preventDefault();
     });
 
     artifactsElement.addEventListener('dragenter', function(event) {
@@ -54,7 +55,7 @@
     artifactsElement.addEventListener('dragstart', function(event) {
         if (event.target.tagName.toLowerCase() === 'img') {
             draggedItem = event.target;
-            event.dataTransfer.setData('text/plain', event.target.alt);
+            event.dataTransfer.setData('text/plain', 'anything');
         }
     });
 
@@ -75,8 +76,9 @@
             draggedItem.classList.add('sold');
             draggedItem.classList.remove('bought');
         
-            money.textContent = Number(money.textContent) + Number(draggedItem.getAttribute('data'));
+            money.textContent = +money.textContent + +draggedItem.getAttribute('data');
         }
+        event.preventDefault();
     });
 
     shopElement.addEventListener('dragenter', function(event) {
