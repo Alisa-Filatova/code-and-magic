@@ -167,7 +167,6 @@ a:active {
   margin: 20px 0 28px;
   padding: 0;
   position: relative;
-  z-index: 1;
 }
 
 .header__description {
@@ -176,7 +175,7 @@ a:active {
   margin: 0 auto;
   position: relative;
   width: 620px;
-  z-index: 1;
+  /* z-index: 1; */
 }
 
 .demo {
@@ -712,7 +711,8 @@ input[type=radio]:checked + .review-mark__label {
   position: absolute;
   left: 50%;
   top: 100px;
-  transform: translateX(-50%);
+  margin-left: -400px;
+  margin-right: -400px;
   background: #89a1fd;
   box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
@@ -862,7 +862,7 @@ input[type=radio]:checked + .review-mark__label {
   padding: 5px;
 }
 
-.aftifact {
+.artifact {
   cursor: grab;
   cursor: -webkit-grab;
 }
@@ -1132,4 +1132,7 @@ input[type=radio]:checked + .review-mark__label {
 
 [draggable=true] {
   -khtml-user-drag: element;
+  -webkit-user-drag: element;
+  cursor: grab;
+  cursor: -webkit-grab;
 }
