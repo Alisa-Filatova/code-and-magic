@@ -3,12 +3,12 @@
 // События на диалоговом окне
 
 (function() {
-
     var setupOpen = document.querySelector('.setup-open');
     var setupWindow = document.querySelector('.setup');
     var setupClose = setupWindow.querySelector('.setup-close');
     var setupSimilar = setupWindow.querySelector('.setup-similar');
     var similarListElement = setupWindow.querySelector('.setup-similar-list');
+    var headerDescription = document.querySelector('.header__description');
     
     var overlaySetup = document.querySelector('.overlay');
     
@@ -31,15 +31,17 @@
         setupWindow.classList.remove('hidden');
         setupSimilar.classList.remove('hidden');
         overlaySetup.classList.remove('invisible');
+        headerDescription.classList.add('hide');
     });
 
     setupOpen.addEventListener('keydown', function(event) {
-        event.preventDefault();
         
         if (event.keyCode === KEY_CODES.ENTER) {
+            event.preventDefault();
             setupWindow.classList.remove('hidden');
             setupSimilar.classList.remove('hidden');
             overlaySetup.classList.remove('invisible');
+            headerDescription.classList.add('hide');
         }
     });
 
@@ -47,6 +49,7 @@
         setupWindow.classList.add('hidden');
         setupSimilar.classList.add('hidden');
         overlaySetup.classList.add('invisible');
+        headerDescription.classList.remove('hide');
     });
 
     document.addEventListener('keydown', function(event) {
@@ -56,6 +59,7 @@
             setupWindow.classList.add('hidden');
             setupSimilar.classList.add('hidden');
             overlaySetup.classList.add('invisible');
+            headerDescription.classList.remove('hide');
         }
     });
 
@@ -67,6 +71,7 @@
         setupWindow.classList.add('hidden');
         setupSimilar.classList.add('hidden');
         overlaySetup.classList.add('invisible');
+        headerDescription.classList.remove('hide');
     };
 
     var errorHandler = function(errorMessage) {
@@ -81,6 +86,7 @@
 
         event.preventDefault();
     });
+})();
     
 // // Перетаскивание диалогового окна настроек
 
@@ -119,4 +125,3 @@
 //         document.addEventListener('mousemove', onMouseMove);
 //         document.addEventListener('mouseup', onMouseUp);
 //     });
-})();

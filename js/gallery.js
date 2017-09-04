@@ -2,8 +2,6 @@
  * ScreenShots Gallery
  */
 (function() {
-    // Элементы галереи
-
     var $window = $(window);
     var $imageSmall = $('.photogallery__image');
     var $imageBig = $('.overlay-gallery-preview img');
@@ -11,25 +9,20 @@
     var $imageBigBox = $('.overlay-gallery__preview');
     var $overlayGallery = $('.overlay-gallery');
 
-    // Навигация
-
     var $closeGallery = $('.gallery__btn_close');
     var $next = $('.overlay-gallery-control_right');
     var $prev = $('.overlay-gallery-control_left');
     var $moreScreenShots = $('.photogallery__btn');
-
-    // Функция отображения кол-ва скриншотов
-
-    var $ImageCount = $imageSmall.clone();
-    var currentStep = 1;
+    
     var $currentBox = $('.preview-number_current');
     var $totalBox = $('.preview-number_total');
 
+    var $ImageCount = $imageSmall.clone();
+    var currentStep = 1;
+   
     function totalImages() {
         $totalBox.text($ImageCount.length);
     }
-
-    // Кнопка "Больше скриншотов"
 
     $moreScreenShots.on('click', function(event) {
         event.preventDefault();
@@ -42,8 +35,6 @@
         
         totalImages();
     });
-
-    // Открытие галереи по клику на картинку
 
     $imageSmallBox.on('click', function(event) {
         event.preventDefault();
@@ -62,8 +53,6 @@
             .siblings('img')
             .remove();
     });
-
-    // Перелистывание картинок вперед и назад
 
     $next.on('click', function() {
         currentStep++;
@@ -136,15 +125,11 @@
             }
         }
 
-        // Закрытие галереи по нажатию esc
-
         if (event.keyCode == KEY_CODES.ESC && $checkOverlay) {
             $imageBig.remove().siblings('img').remove();
             $overlayGallery.addClass('invisible');
         }
     });
-
-    // Закрытие галереи по нажатию крестика
 
     $closeGallery.on('click', function(event) {
         event.preventDefault();
