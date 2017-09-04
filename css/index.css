@@ -85,9 +85,7 @@ a:active {
 .popup {
   position: absolute;
   z-index: 100;
-
   min-width: 200px;
-
   background-color: #414342;
   border-color: black;
   border-style: solid;
@@ -173,9 +171,7 @@ a:active {
   font-size: 20px;
   line-height: 1.2;
   margin: 0 auto;
-  position: relative;
   width: 620px;
-  /* z-index: 1; */
 }
 
 .demo {
@@ -266,7 +262,6 @@ a:active {
   border-right: 35px solid #fff;
   border-top: 25px solid transparent;
 }
-
 
 .demo__description_text {
   color: #000;
@@ -858,10 +853,14 @@ input[type=radio]:checked + .review-mark__label {
 }
 
 [draggable=true] {
-  -khtml-user-drag: element;
-  -webkit-user-drag: element;
   cursor: grab;
   cursor: -webkit-grab;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
 }
 
 [draggable=true]:active {
@@ -958,6 +957,17 @@ input[type=radio]:checked + .review-mark__label {
 .wizard-eyes,
 .fireball-group {
   cursor: pointer;
+}
+
+.error-message {
+  z-index: 10000;
+  margin: 0 auto;
+  text-align: center;
+  background-color: red;
+  position: absolute;
+  left: 0;
+  right: 0;
+  font-size: 30px;
 }
 
 
@@ -1109,15 +1119,4 @@ input[type=radio]:checked + .review-mark__label {
 
 .hide {
   visibility: hidden;
-}
-
-.error-message {
-  z-index: 10000;
-  margin: 0 auto;
-  text-align: center;
-  background-color: red;
-  position: absolute;
-  left: 0;
-  right: 0;
-  font-size: 30px;
 }
