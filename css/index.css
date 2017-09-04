@@ -667,11 +667,6 @@ input[type=radio]:checked + .review-mark__label {
   text-align: center;
 }
 
-.overlay-gallery img {
-  width: auto;
-  max-height: 550px;
-}
-
 .overlay-gallery__controls {
   margin: 100px 0;
 }
@@ -862,17 +857,14 @@ input[type=radio]:checked + .review-mark__label {
   padding: 5px;
 }
 
-.artifact {
+[draggable=true] {
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
   cursor: grab;
   cursor: -webkit-grab;
 }
 
-.artifact:active {
-  cursor: grabbing;
-  cursor: -webkit-grabbing;
-}
-
-.artifact_active {
+[draggable=true]:active {
   cursor: grabbing;
   cursor: -webkit-grabbing;
 }
@@ -1128,11 +1120,4 @@ input[type=radio]:checked + .review-mark__label {
   left: 0;
   right: 0;
   font-size: 30px;
-}
-
-[draggable=true] {
-  -khtml-user-drag: element;
-  -webkit-user-drag: element;
-  cursor: grab;
-  cursor: -webkit-grab;
 }

@@ -75,7 +75,8 @@
         $reviewOverlay.addClass('invisible');
     });
 
-    $window.keydown(function() {
+    $window.keydown(function(event) {
+        
         if (event.keyCode == KEY_CODES.ESC && $reviewOverlay.not('invisible')) {
             $reviewOverlay.addClass('invisible');
         }
