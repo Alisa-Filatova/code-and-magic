@@ -35,7 +35,6 @@
     });
 
     setupOpen.addEventListener('keydown', function(event) {
-        
         if (event.keyCode === KEY_CODES.ENTER) {
             event.preventDefault();
             setupWindow.classList.remove('hidden');

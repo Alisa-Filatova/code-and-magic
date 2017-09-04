@@ -6,10 +6,9 @@
     var shopElement = document.querySelector('.setup-artifacts-shop');
     var artifactsElement = document.querySelector('.setup-artifacts');
     var money = document.querySelector('.money__count');
-
     var draggedItem = null;
 
-    // Перенос из магазина в рюкзак
+    // Перенос из магазина в рюкзак, покупка (вычитание суммы товара из кошелька)
 
     shopElement.addEventListener('dragstart', function(event) {
         event.stopPropagation();
@@ -57,7 +56,7 @@
         event.preventDefault();
     });
 
-    // Перенос из рюкзака в магазин
+    // Перенос из рюкзака в магазин, продажа (добавление суммы товара в кошелек)
 
     artifactsElement.addEventListener('dragstart', function(event) {
         if (event.target.tagName.toLowerCase() === 'img') {
