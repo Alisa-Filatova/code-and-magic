@@ -1,4 +1,3 @@
-
 var KEY_CODES = {
     RIGHT: 39,
     LEFT: 37,
@@ -31,3 +30,9 @@ function removeElementsByClass(className) {
         elements[0].parentNode.removeChild(elements[0]);
     }
 }
+
+export {
+    KEY_CODES,
+    getRandomIndex,
+    removeElementsByClass,
+};

@@ -1,0 +1,10 @@
+import '../css/normalize.css';
+import '../css/index.css';
+import './backend';
+import './game';
+import './dialog';
+import './load-random-characters';
+import './colorize';
+import './drag-and-drop';
+import './gallery';
+import './reviews';
