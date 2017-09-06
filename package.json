@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack",
     "watch": "webpack -w",
-    "build": "NODE_ENV=production webpack"
+    "build": "rm -rf ./dist && NODE_ENV=production webpack"
   },
   "repository": {
     "type": "git",
