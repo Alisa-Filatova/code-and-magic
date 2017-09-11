@@ -3,6 +3,7 @@ import '../css/index.css';
 import './backend';
 import './game';
 import './dialog';
+import './upload-avatar';
 import './load-random-characters';
 import './colorize';
 import './drag-and-drop';
