@@ -1,4 +1,4 @@
-var SERVER_URL = 'http://code-and-magic.alicedesign.ru/enroll';
+var SERVER_URL = 'http://alicedesign.ru/enroll';
 var URL = 'data/wizards.json';
 
 var setup = function(onSuccess, onError) {
