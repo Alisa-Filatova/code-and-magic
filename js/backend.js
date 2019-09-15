@@ -1,10 +1,10 @@
-var SERVER_URL = 'http://lenortat.spb.ru/enroll';
-var URL = 'data/wizards.json'
+var SERVER_URL = 'http://code-and-magic.alicedesign.ru/enroll';
+var URL = 'data/wizards.json';
 
 var setup = function(onSuccess, onError) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
-    
+
     xhr.addEventListener('load', function(event) {
         if (xhr.status === 200) {
             onSuccess(xhr.response);
@@ -22,11 +22,11 @@ var setup = function(onSuccess, onError) {
     });
 
     xhr.timeout = 15000;
-    
+
     return xhr;
 };
 
-window.backend = { 
+window.backend = {
     upload: function(data, onSuccess, onError) {
         var xhr = setup(onSuccess, onError);
         xhr.open('POST', SERVER_URL);
